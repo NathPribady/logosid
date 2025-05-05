@@ -56,7 +56,7 @@ export default function LatestWebinar({
           className="group flex w-full items-center justify-center bg-red-600 hover:bg-red-700 text-center py-3 px-4 font-medium transition-all shadow-md hover:shadow-lg"
           style={{ borderRadius: "0.5rem" }} /* Inline style as a fallback */
         >
-          <span>Daftar Gratis</span>
+          <span>Daftar (Bayar Seikhlasnya)!</span>
           <ArrowRight className="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform" />
         </Link>
       </div>
