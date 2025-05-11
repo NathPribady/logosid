@@ -175,8 +175,8 @@ export default async function Home() {
                   day: "numeric",
                 })}
                 image={latestWebinar.image || "/placeholder.svg?height=300&width=400"}
-                speaker="Airlangga Julio"
-                speakerDescription="Lawyer at AMAR Law Firm & Public Interest Law Office"
+                speaker="Jessenia Destarini"
+                speakerDescription="Advocacy - Impunity Monitoring Staff @ KontraS"
                 registrationLink={latestWebinar.link}
               />
             )}
