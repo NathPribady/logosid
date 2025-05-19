@@ -28,7 +28,7 @@ export default async function Home() {
           <div className="max-w-4xl">
             <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">Berdayakan Pikiran</h1>
             <p className="text-xl text-gray-100 mb-8 max-w-2xl">
-              Logos ID membawa sains, filsafat, politik & sejarah ke percakapan sehari-hari. Membuat 1500+ artikel &
+              Logos ID membawa sains, filsafat, politik & sejarah ke percakapan sehari-hari. Membuat 2000+ artikel &
               buku saintifik menjadi sederhana.
             </p>
             <Link
@@ -145,7 +145,7 @@ export default async function Home() {
                 </p>
                 <div className="flex items-center mb-3 text-xs">
                   <Calendar className="w-3 h-3 mr-1" />
-                  <span>Mulai 15 Juni 2025</span>
+                  <span>Mulai 23 Mei 2025</span>
                 </div>
                 <Link
                   href="https://logos-id.myr.id/pl/bahas-pendidikan"
