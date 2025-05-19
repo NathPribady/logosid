@@ -148,7 +148,7 @@ export default async function Home() {
                   <span>Mulai 15 Juni 2025</span>
                 </div>
                 <Link
-                  href="bit.ly/BahasPendidikan"
+                  href="https://logos-id.myr.id/pl/bahas-pendidikan"
                   className="inline-flex items-center gap-1 bg-white text-blue-600 px-3 py-1.5 rounded-lg text-sm font-medium hover:bg-blue-50 transition-colors shadow-md hover:shadow-lg"
                   style={{ borderRadius: "0.5rem" }} /* Inline style as a fallback */
                 >
