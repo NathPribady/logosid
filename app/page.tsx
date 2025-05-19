@@ -1,10 +1,9 @@
 import Link from "next/link"
-import { ArrowRight, BookOpen } from "lucide-react"
+import { ArrowRight, BookOpen, Calendar, Users, Video } from "lucide-react"
 import { getWebinars } from "../lib/webinars"
 import { getPodcasts } from "../lib/podcasts"
 import { getContent } from "../lib/content"
 import StatCard from "../components/StatCard"
-import LatestWebinar from "../components/LatestWebinar"
 import Image from "next/image"
 
 export const revalidate = 3600 // revalidate every hour
@@ -114,71 +113,188 @@ export default async function Home() {
           <h2 className="text-3xl md:text-4xl font-bold mb-10 text-gray-900 dark:text-white">
             <span className="inline-block border-b-4 border-red-600 pb-2">Pengumuman Terbaru</span>
           </h2>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {/* Langka Website Announcement */}
+
+          {/* Grid for announcements - 4 cards in a single row */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {/* Announcement 1: Bahas Pendidikan */}
             <div
-              className="bg-gradient-to-br from-red-600 to-red-800 text-white rounded-lg overflow-hidden shadow-xl transform transition-all hover:scale-[1.01] duration-300"
+              className="bg-gradient-to-br from-blue-600 to-blue-800 text-white rounded-lg overflow-hidden shadow-xl transform transition-all hover:scale-[1.01] duration-300 flex flex-col h-full"
               style={{ borderRadius: "0.5rem" }} /* Inline style as a fallback */
             >
-              <div className="p-6 md:p-8">
-                <div className="flex flex-col md:flex-row items-center">
-                  <div className="mb-6 md:mb-0 md:mr-8 flex-1">
-                    <div
-                      className="inline-block bg-white/20 text-white text-sm font-semibold px-3 py-1 rounded-full mb-4"
-                      style={{ borderRadius: "9999px" }} /* Inline style as a fallback */
-                    >
-                      Baru Diluncurkan
-                    </div>
-                    <h3 className="text-2xl md:text-3xl font-bold mb-4 leading-tight">Website "Langka" Telah Hadir!</h3>
-                    <p className="text-lg mb-6 text-white/90 leading-relaxed">
-                      Nikmati 400+ karya sastra, sejarah, sampai kejahatan HAM berat yang disembunyikan dari berbagai
-                      era.
-                    </p>
-                    <Link
-                      href="https://langka.vercel.app"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 bg-white text-red-600 px-6 py-3 text-lg font-medium rounded-lg hover:bg-red-50 transition-colors shadow-md hover:shadow-lg"
-                      style={{ borderRadius: "0.5rem" }} /* Inline style as a fallback */
-                    >
-                      <span>Baca Gratis</span>
-                      <BookOpen className="w-5 h-5" />
-                    </Link>
-                  </div>
-                  <div className="w-full md:w-2/5 flex-shrink-0">
-                    <div
-                      className="relative overflow-hidden rounded-lg shadow-2xl border-2 border-white/20 transform rotate-2 hover:rotate-0 transition-transform duration-300"
-                      style={{ borderRadius: "0.5rem" }} /* Inline style as a fallback */
-                    >
-                      <Image
-                        src="https://pbs.twimg.com/media/GjY1KQmX0AAdFep?format=jpg&name=4096x4096"
-                        alt="Ilustrasi Buku"
-                        width={300}
-                        height={225}
-                        className="w-full h-auto object-cover"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-red-900/50 to-transparent"></div>
-                    </div>
+              <div className="relative w-full" style={{ paddingBottom: "125%" /* 4:5 aspect ratio */ }}>
+                <Image
+                  src="/images/bahas-pendidikan.png"
+                  alt="Bahas Pendidikan"
+                  fill
+                  className="object-cover"
+                  style={{ objectPosition: "center" }}
+                />
+                <div className="absolute top-4 left-4">
+                  <div
+                    className="inline-block bg-blue-900/80 text-white text-xs font-semibold px-3 py-1 rounded-full"
+                    style={{ borderRadius: "9999px" }} /* Inline style as a fallback */
+                  >
+                    Cohort Based Course
                   </div>
                 </div>
               </div>
+              <div className="p-4 flex flex-col flex-grow">
+                <h3 className="text-lg font-bold mb-2">Bahas Pendidikan</h3>
+                <p className="text-white/90 mb-3 flex-grow text-sm">
+                  Kursus intensif membahas teori dan praktik pendidikan modern.
+                </p>
+                <div className="flex items-center mb-3 text-xs">
+                  <Calendar className="w-3 h-3 mr-1" />
+                  <span>Mulai 15 Juni 2025</span>
+                </div>
+                <Link
+                  href="bit.ly/BahasPendidikan"
+                  className="inline-flex items-center gap-1 bg-white text-blue-600 px-3 py-1.5 rounded-lg text-sm font-medium hover:bg-blue-50 transition-colors shadow-md hover:shadow-lg"
+                  style={{ borderRadius: "0.5rem" }} /* Inline style as a fallback */
+                >
+                  <span>Daftar (Donasi Seikhlasnya)!</span>
+                  <ArrowRight className="w-3 h-3" />
+                </Link>
+              </div>
             </div>
 
-            {/* Latest Webinar */}
+            {/* Announcement 2: Henry Giroux 101 */}
+            <div
+              className="bg-gradient-to-br from-purple-600 to-purple-800 text-white rounded-lg overflow-hidden shadow-xl transform transition-all hover:scale-[1.01] duration-300 flex flex-col h-full"
+              style={{ borderRadius: "0.5rem" }} /* Inline style as a fallback */
+            >
+              <div className="relative w-full" style={{ paddingBottom: "125%" /* 4:5 aspect ratio */ }}>
+                <Image
+                  src="https://i.postimg.cc/9fRs8R6M/1.png"
+                  alt="Henry Giroux 101"
+                  fill
+                  className="object-cover"
+                  style={{ objectPosition: "center" }}
+                />
+                <div className="absolute top-4 left-4">
+                  <div
+                    className="inline-block bg-purple-900/80 text-white text-xs font-semibold px-3 py-1 rounded-full"
+                    style={{ borderRadius: "9999px" }} /* Inline style as a fallback */
+                  >
+                    Cohort Based Course
+                  </div>
+                </div>
+              </div>
+              <div className="p-4 flex flex-col flex-grow">
+                <h3 className="text-lg font-bold mb-2">Henry Giroux 101</h3>
+                <p className="text-white/90 mb-3 flex-grow text-sm">
+                  Eksplorasi mendalam tentang pemikiran Henry Giroux.
+                </p>
+                <div className="flex items-center mb-3 text-xs">
+                  <Users className="w-3 h-3 mr-1" />
+                  <span>Terbatas 50 Peserta</span>
+                </div>
+                <Link
+                  href="https://logos-id.myr.id/pl/henry-giroux-101"
+                  className="inline-flex items-center gap-1 bg-white text-purple-600 px-3 py-1.5 rounded-lg text-sm font-medium hover:bg-purple-50 transition-colors shadow-md hover:shadow-lg"
+                  style={{ borderRadius: "0.5rem" }} /* Inline style as a fallback */
+                >
+                  <span>Daftar (Donasi Seikhlasnya)!</span>
+                  <ArrowRight className="w-3 h-3" />
+                </Link>
+              </div>
+            </div>
+
+            {/* Announcement 3: Langka Website */}
+            <div
+              className="bg-gradient-to-br from-red-600 to-red-800 text-white rounded-lg overflow-hidden shadow-xl transform transition-all hover:scale-[1.01] duration-300 flex flex-col h-full"
+              style={{ borderRadius: "0.5rem" }} /* Inline style as a fallback */
+            >
+              <div className="relative w-full" style={{ paddingBottom: "125%" /* 4:5 aspect ratio */ }}>
+                <Image
+                  src="https://i.postimg.cc/J04qFSsq/Screenshot-2025-05-19-at-2-59-21-PM.png"
+                  alt="Langka Website"
+                  fill
+                  className="object-cover"
+                  style={{ objectPosition: "center" }}
+                />
+                <div className="absolute top-4 left-4">
+                  <div
+                    className="inline-block bg-red-900/80 text-white text-xs font-semibold px-3 py-1 rounded-full"
+                    style={{ borderRadius: "9999px" }} /* Inline style as a fallback */
+                  >
+                    Baru Diluncurkan
+                  </div>
+                </div>
+              </div>
+              <div className="p-4 flex flex-col flex-grow">
+                <h3 className="text-lg font-bold mb-2">Website "Langka"</h3>
+                <p className="text-white/90 mb-3 flex-grow text-sm">
+                  Nikmati 400+ karya sastra, sejarah, sampai kejahatan HAM berat.
+                </p>
+                <Link
+                  href="https://langka.vercel.app"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 bg-white text-red-600 px-3 py-1.5 rounded-lg text-sm font-medium hover:bg-red-50 transition-colors shadow-md hover:shadow-lg mt-auto"
+                  style={{ borderRadius: "0.5rem" }} /* Inline style as a fallback */
+                >
+                  <span>Baca Gratis</span>
+                  <BookOpen className="w-3 h-3" />
+                </Link>
+              </div>
+            </div>
+
+            {/* Announcement 4: Latest Webinar */}
             {latestWebinar && (
-              <LatestWebinar
-                title={latestWebinar.title}
-                date={new Date(latestWebinar.date).toLocaleDateString("id-ID", {
-                  weekday: "long",
-                  year: "numeric",
-                  month: "long",
-                  day: "numeric",
-                })}
-                image={latestWebinar.image || "/placeholder.svg?height=300&width=400"}
-                speaker="Jessenia Destarini"
-                speakerDescription="Advocacy - Impunity Monitoring Staff @ KontraS"
-                registrationLink={latestWebinar.link}
-              />
+              <div
+                className="bg-gradient-to-br from-green-600 to-green-800 text-white rounded-lg overflow-hidden shadow-xl transform transition-all hover:scale-[1.01] duration-300 flex flex-col h-full"
+                style={{ borderRadius: "0.5rem" }} /* Inline style as a fallback */
+              >
+                <div className="relative w-full" style={{ paddingBottom: "125%" /* 4:5 aspect ratio */ }}>
+                  <Image
+                    src={latestWebinar.image || "/placeholder.svg?height=500&width=400&query=webinar"}
+                    alt={latestWebinar.title}
+                    fill
+                    className="object-cover"
+                    style={{ objectPosition: "center" }}
+                  />
+                  <div className="absolute top-4 left-4">
+                    <div
+                      className="inline-block bg-green-900/80 text-white text-xs font-semibold px-3 py-1 rounded-full"
+                      style={{ borderRadius: "9999px" }} /* Inline style as a fallback */
+                    >
+                      Webinar Terbaru
+                    </div>
+                  </div>
+                </div>
+                <div className="p-4 flex flex-col flex-grow">
+                  <h3 className="text-lg font-bold mb-2">
+                    {latestWebinar.title.length > 30
+                      ? `${latestWebinar.title.substring(0, 30)}...`
+                      : latestWebinar.title}
+                  </h3>
+                  <p className="text-white/90 mb-3 flex-grow text-sm">
+                    {latestWebinar.description.length > 60
+                      ? `${latestWebinar.description.substring(0, 60)}...`
+                      : latestWebinar.description}
+                  </p>
+                  <div className="flex items-center mb-3 text-xs">
+                    <Calendar className="w-3 h-3 mr-1" />
+                    <span>
+                      {new Date(latestWebinar.date).toLocaleDateString("id-ID", {
+                        day: "numeric",
+                        month: "short",
+                      })}
+                    </span>
+                  </div>
+                  <Link
+                    href={latestWebinar.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 bg-white text-green-600 px-3 py-1.5 rounded-lg text-sm font-medium hover:bg-green-50 transition-colors shadow-md hover:shadow-lg"
+                    style={{ borderRadius: "0.5rem" }} /* Inline style as a fallback */
+                  >
+                    <span>Tonton Webinar</span>
+                    <Video className="w-3 h-3" />
+                  </Link>
+                </div>
+              </div>
             )}
           </div>
         </div>
