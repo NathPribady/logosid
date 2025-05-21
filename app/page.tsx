@@ -141,7 +141,7 @@ export default async function Home() {
               <div className="p-4 flex flex-col flex-grow">
                 <h3 className="text-lg font-bold mb-2">Bahas Pendidikan</h3>
                 <p className="text-white/90 mb-3 flex-grow text-sm">
-                  Kursus intensif membahas teori dan praktik pendidikan modern.
+                  Kursus intensif membahas teori dan praktik pendidikan.
                 </p>
                 <div className="flex items-center mb-3 text-xs">
                   <Calendar className="w-3 h-3 mr-1" />
@@ -183,7 +183,7 @@ export default async function Home() {
               <div className="p-4 flex flex-col flex-grow">
                 <h3 className="text-lg font-bold mb-2">Henry Giroux 101</h3>
                 <p className="text-white/90 mb-3 flex-grow text-sm">
-                  Eksplorasi mendalam tentang pemikiran Henry Giroux.
+                  Eksplorasi mendalam pemikiran Henry Giroux.
                 </p>
                 <div className="flex items-center mb-3 text-xs">
                   <Users className="w-3 h-3 mr-1" />
@@ -290,7 +290,7 @@ export default async function Home() {
                     className="inline-flex items-center gap-1 bg-white text-green-600 px-3 py-1.5 rounded-lg text-sm font-medium hover:bg-green-50 transition-colors shadow-md hover:shadow-lg"
                     style={{ borderRadius: "0.5rem" }} /* Inline style as a fallback */
                   >
-                    <span>Tonton Webinar</span>
+                    <span>Daftar (Donasi Seikhlasnya)!</span>
                     <Video className="w-3 h-3" />
                   </Link>
                 </div>
