@@ -15,6 +15,7 @@
 body {
   color: rgb(var(--foreground-rgb));
   background: rgb(var(--background-rgb));
+  font-feature-settings: "ss01" on, "ss02" on, "cv01" on, "cv03" on;
 }
 
 @layer base {
@@ -57,5 +58,40 @@ body {
 
   .card {
     @apply bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden;
+  }
+
+  /* Simple, elegant animations */
+  .simple-hover:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Gradient text */
+  .gradient-text {
+    @apply text-transparent bg-clip-text;
+    background-image: linear-gradient(to right, #f43f5e, #ec4899);
+  }
+
+  /* Simple animated underline */
+  .simple-underline {
+    position: relative;
+  }
+
+  .simple-underline::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: -2px;
+    left: 0;
+    background-color: currentColor;
+    transform-origin: bottom right;
+    transition: transform 0.3s ease-out;
+  }
+
+  .simple-underline:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
   }
 }

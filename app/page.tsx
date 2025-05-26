@@ -23,27 +23,30 @@ export default async function Home() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative bg-black text-white">
-        <div className="container mx-auto px-4 py-12">
+      <section className="relative bg-black text-white overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black"></div>
+        <div className="container mx-auto px-4 py-16 md:py-24 relative z-10">
           <div className="max-w-4xl">
-            <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">Berdayakan Pikiran</h1>
+            <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
+              <span className="gradient-text">Berdayakan Pikiran</span>
+            </h1>
             <p className="text-xl text-gray-100 mb-8 max-w-2xl">
               Logos ID membawa sains, filsafat, politik & sejarah ke percakapan sehari-hari. Membuat 2000+ artikel &
               buku saintifik menjadi sederhana.
             </p>
             <Link
               href="/content"
-              className="inline-flex items-center gap-2 bg-red-600 text-white px-8 py-4 text-lg font-medium rounded-lg hover:bg-red-700 transition-colors"
+              className="inline-flex items-center gap-2 bg-red-600 text-white px-8 py-4 text-lg font-medium rounded-lg hover:bg-red-700 transition-colors shadow-lg"
               style={{ borderRadius: "0.5rem" }} /* Inline style as a fallback */
             >
-              Mulai Belajar <ArrowRight className="w-5 h-5" />
+              <span>Mulai Belajar</span> <ArrowRight className="w-5 h-5" />
             </Link>
-            <div className="flex space-x-4 mt-6">
+            <div className="flex space-x-4 mt-8">
               <Link
                 href="https://twitter.com/logos_id"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-white hover:text-red-600 transition-colors"
+                className="text-white hover:text-red-400 transition-colors"
               >
                 <span className="sr-only">Twitter</span>
                 <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -54,7 +57,7 @@ export default async function Home() {
                 href="https://instagram.com/_logosid"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-white hover:text-red-600 transition-colors"
+                className="text-white hover:text-red-400 transition-colors"
               >
                 <span className="sr-only">Instagram</span>
                 <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -69,7 +72,7 @@ export default async function Home() {
                 href="https://www.youtube.com/@LogosID"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-white hover:text-red-600 transition-colors"
+                className="text-white hover:text-red-400 transition-colors"
               >
                 <span className="sr-only">YouTube</span>
                 <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -84,7 +87,7 @@ export default async function Home() {
                 href="https://open.spotify.com/show/2bwe0dyWnFKmqXaYCSwhML"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-white hover:text-red-600 transition-colors"
+                className="text-white hover:text-red-400 transition-colors"
               >
                 <span className="sr-only">Spotify</span>
                 <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -95,7 +98,7 @@ export default async function Home() {
                 href="https://www.linkedin.com/company/logos-id"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-white hover:text-red-600 transition-colors"
+                className="text-white hover:text-red-400 transition-colors"
               >
                 <span className="sr-only">LinkedIn</span>
                 <svg className="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -108,7 +111,7 @@ export default async function Home() {
       </section>
 
       {/* Announcements Section */}
-      <section className="py-16 bg-gray-100 dark:bg-gray-900">
+      <section className="py-16 bg-gray-50 dark:bg-gray-900">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-bold mb-10 text-gray-900 dark:text-white">
             <span className="inline-block border-b-4 border-red-600 pb-2">Pengumuman Terbaru</span>
@@ -118,7 +121,7 @@ export default async function Home() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {/* Announcement 1: Bahas Pendidikan */}
             <div
-              className="bg-gradient-to-br from-blue-600 to-blue-800 text-white rounded-lg overflow-hidden shadow-xl transform transition-all hover:scale-[1.01] duration-300 flex flex-col h-full"
+              className="bg-gradient-to-br from-blue-600 to-blue-800 text-white rounded-lg overflow-hidden shadow-lg flex flex-col h-full"
               style={{ borderRadius: "0.5rem" }} /* Inline style as a fallback */
             >
               <div className="relative w-full" style={{ paddingBottom: "125%" /* 4:5 aspect ratio */ }}>
@@ -129,16 +132,17 @@ export default async function Home() {
                   className="object-cover"
                   style={{ objectPosition: "center" }}
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-blue-900/80 to-transparent opacity-70"></div>
                 <div className="absolute top-4 left-4">
                   <div
-                    className="inline-block bg-blue-900/80 text-white text-xs font-semibold px-3 py-1 rounded-full"
+                    className="inline-block bg-blue-900/80 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1 rounded-full shadow-md"
                     style={{ borderRadius: "9999px" }} /* Inline style as a fallback */
                   >
                     Cohort Based Course
                   </div>
                 </div>
               </div>
-              <div className="p-4 flex flex-col flex-grow">
+              <div className="p-4 flex flex-col flex-grow bg-gradient-to-b from-blue-800/50 to-blue-900/50 backdrop-blur-sm">
                 <h3 className="text-lg font-bold mb-2">Bahas Pendidikan</h3>
                 <p className="text-white/90 mb-3 flex-grow text-sm">
                   Kursus intensif membahas teori dan praktik pendidikan.
@@ -149,7 +153,7 @@ export default async function Home() {
                 </div>
                 <Link
                   href="https://logos-id.myr.id/pl/bahas-pendidikan"
-                  className="inline-flex items-center gap-1 bg-white text-blue-600 px-3 py-1.5 rounded-lg text-sm font-medium hover:bg-blue-50 transition-colors shadow-md hover:shadow-lg"
+                  className="inline-flex items-center gap-1 bg-white text-blue-600 px-3 py-1.5 rounded-lg text-sm font-medium hover:bg-blue-50 transition-colors shadow-md"
                   style={{ borderRadius: "0.5rem" }} /* Inline style as a fallback */
                 >
                   <span>Daftar (Donasi Seikhlasnya)!</span>
@@ -160,7 +164,7 @@ export default async function Home() {
 
             {/* Announcement 2: Henry Giroux 101 */}
             <div
-              className="bg-gradient-to-br from-purple-600 to-purple-800 text-white rounded-lg overflow-hidden shadow-xl transform transition-all hover:scale-[1.01] duration-300 flex flex-col h-full"
+              className="bg-gradient-to-br from-purple-600 to-purple-800 text-white rounded-lg overflow-hidden shadow-lg flex flex-col h-full"
               style={{ borderRadius: "0.5rem" }} /* Inline style as a fallback */
             >
               <div className="relative w-full" style={{ paddingBottom: "125%" /* 4:5 aspect ratio */ }}>
@@ -171,27 +175,26 @@ export default async function Home() {
                   className="object-cover"
                   style={{ objectPosition: "center" }}
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-purple-900/80 to-transparent opacity-70"></div>
                 <div className="absolute top-4 left-4">
                   <div
-                    className="inline-block bg-purple-900/80 text-white text-xs font-semibold px-3 py-1 rounded-full"
+                    className="inline-block bg-purple-900/80 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1 rounded-full shadow-md"
                     style={{ borderRadius: "9999px" }} /* Inline style as a fallback */
                   >
                     Cohort Based Course
                   </div>
                 </div>
               </div>
-              <div className="p-4 flex flex-col flex-grow">
+              <div className="p-4 flex flex-col flex-grow bg-gradient-to-b from-purple-800/50 to-purple-900/50 backdrop-blur-sm">
                 <h3 className="text-lg font-bold mb-2">Henry Giroux 101</h3>
-                <p className="text-white/90 mb-3 flex-grow text-sm">
-                  Eksplorasi mendalam pemikiran Henry Giroux.
-                </p>
+                <p className="text-white/90 mb-3 flex-grow text-sm">Eksplorasi mendalam pemikiran Henry Giroux.</p>
                 <div className="flex items-center mb-3 text-xs">
                   <Users className="w-3 h-3 mr-1" />
                   <span>Terbatas 50 Peserta</span>
                 </div>
                 <Link
                   href="https://logos-id.myr.id/pl/henry-giroux-101"
-                  className="inline-flex items-center gap-1 bg-white text-purple-600 px-3 py-1.5 rounded-lg text-sm font-medium hover:bg-purple-50 transition-colors shadow-md hover:shadow-lg"
+                  className="inline-flex items-center gap-1 bg-white text-purple-600 px-3 py-1.5 rounded-lg text-sm font-medium hover:bg-purple-50 transition-colors shadow-md"
                   style={{ borderRadius: "0.5rem" }} /* Inline style as a fallback */
                 >
                   <span>Daftar (Donasi Seikhlasnya)!</span>
@@ -202,7 +205,7 @@ export default async function Home() {
 
             {/* Announcement 3: Langka Website */}
             <div
-              className="bg-gradient-to-br from-red-600 to-red-800 text-white rounded-lg overflow-hidden shadow-xl transform transition-all hover:scale-[1.01] duration-300 flex flex-col h-full"
+              className="bg-gradient-to-br from-red-600 to-red-800 text-white rounded-lg overflow-hidden shadow-lg flex flex-col h-full"
               style={{ borderRadius: "0.5rem" }} /* Inline style as a fallback */
             >
               <div className="relative w-full" style={{ paddingBottom: "125%" /* 4:5 aspect ratio */ }}>
@@ -213,16 +216,17 @@ export default async function Home() {
                   className="object-cover"
                   style={{ objectPosition: "center" }}
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-red-900/80 to-transparent opacity-70"></div>
                 <div className="absolute top-4 left-4">
                   <div
-                    className="inline-block bg-red-900/80 text-white text-xs font-semibold px-3 py-1 rounded-full"
+                    className="inline-block bg-red-900/80 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1 rounded-full shadow-md"
                     style={{ borderRadius: "9999px" }} /* Inline style as a fallback */
                   >
                     Baru Diluncurkan
                   </div>
                 </div>
               </div>
-              <div className="p-4 flex flex-col flex-grow">
+              <div className="p-4 flex flex-col flex-grow bg-gradient-to-b from-red-800/50 to-red-900/50 backdrop-blur-sm">
                 <h3 className="text-lg font-bold mb-2">Website "Langka"</h3>
                 <p className="text-white/90 mb-3 flex-grow text-sm">
                   Nikmati 400+ karya sastra, sejarah, sampai kejahatan HAM berat.
@@ -231,7 +235,7 @@ export default async function Home() {
                   href="https://langka.vercel.app"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 bg-white text-red-600 px-3 py-1.5 rounded-lg text-sm font-medium hover:bg-red-50 transition-colors shadow-md hover:shadow-lg mt-auto"
+                  className="inline-flex items-center gap-1 bg-white text-red-600 px-3 py-1.5 rounded-lg text-sm font-medium hover:bg-red-50 transition-colors shadow-md mt-auto"
                   style={{ borderRadius: "0.5rem" }} /* Inline style as a fallback */
                 >
                   <span>Baca Gratis</span>
@@ -243,7 +247,7 @@ export default async function Home() {
             {/* Announcement 4: Latest Webinar */}
             {latestWebinar && (
               <div
-                className="bg-gradient-to-br from-green-600 to-green-800 text-white rounded-lg overflow-hidden shadow-xl transform transition-all hover:scale-[1.01] duration-300 flex flex-col h-full"
+                className="bg-gradient-to-br from-green-600 to-green-800 text-white rounded-lg overflow-hidden shadow-lg flex flex-col h-full"
                 style={{ borderRadius: "0.5rem" }} /* Inline style as a fallback */
               >
                 <div className="relative w-full" style={{ paddingBottom: "125%" /* 4:5 aspect ratio */ }}>
@@ -254,16 +258,17 @@ export default async function Home() {
                     className="object-cover"
                     style={{ objectPosition: "center" }}
                   />
+                  <div className="absolute inset-0 bg-gradient-to-t from-green-900/80 to-transparent opacity-70"></div>
                   <div className="absolute top-4 left-4">
                     <div
-                      className="inline-block bg-green-900/80 text-white text-xs font-semibold px-3 py-1 rounded-full"
+                      className="inline-block bg-green-900/80 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1 rounded-full shadow-md"
                       style={{ borderRadius: "9999px" }} /* Inline style as a fallback */
                     >
                       Webinar Terbaru
                     </div>
                   </div>
                 </div>
-                <div className="p-4 flex flex-col flex-grow">
+                <div className="p-4 flex flex-col flex-grow bg-gradient-to-b from-green-800/50 to-green-900/50 backdrop-blur-sm">
                   <h3 className="text-lg font-bold mb-2">
                     {latestWebinar.title.length > 30
                       ? `${latestWebinar.title.substring(0, 30)}...`
@@ -287,7 +292,7 @@ export default async function Home() {
                     href={latestWebinar.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 bg-white text-green-600 px-3 py-1.5 rounded-lg text-sm font-medium hover:bg-green-50 transition-colors shadow-md hover:shadow-lg"
+                    className="inline-flex items-center gap-1 bg-white text-green-600 px-3 py-1.5 rounded-lg text-sm font-medium hover:bg-green-50 transition-colors shadow-md"
                     style={{ borderRadius: "0.5rem" }} /* Inline style as a fallback */
                   >
                     <span>Daftar (Donasi Seikhlasnya)!</span>
@@ -315,10 +320,16 @@ export default async function Home() {
       {/* Featured Webinars */}
       <section className="py-16 bg-gray-50 dark:bg-gray-900">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold mb-12">Webinar Terbaru</h2>
+          <h2 className="text-3xl font-bold mb-12 text-gray-900 dark:text-white relative inline-block">
+            Webinar Terbaru
+            <span className="absolute -bottom-1 left-0 w-full h-px bg-gradient-to-r from-red-600 via-transparent to-transparent"></span>
+          </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {featuredWebinars.map((webinar, index) => (
-              <article key={webinar.id} className={`group ${index >= 2 ? "hidden sm:block" : ""}`}>
+              <article
+                key={webinar.id}
+                className={`group simple-hover transition-all ${index >= 2 ? "hidden sm:block" : ""}`}
+              >
                 <Link href={webinar.link}>
                   <div
                     className="relative aspect-[16/9] mb-4 bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden"
@@ -328,12 +339,16 @@ export default async function Home() {
                       src={webinar.image || "/placeholder.svg"}
                       alt={webinar.title}
                       fill
-                      className="object-cover group-hover:opacity-90 transition-opacity"
+                      className="object-cover transition-opacity duration-300 group-hover:opacity-90"
                     />
+                    <div className="absolute bottom-0 left-0 p-4">
+                      <span className="inline-block bg-red-600 text-white text-xs px-2 py-1 rounded-full">
+                        {webinar.category}
+                      </span>
+                    </div>
                   </div>
                   <div className="space-y-2">
-                    <span className="text-sm font-medium text-red-600">{webinar.category}</span>
-                    <h3 className="text-xl font-bold group-hover:text-red-600 transition-colors line-clamp-2">
+                    <h3 className="text-xl font-bold group-hover:text-red-600 transition-colors line-clamp-2 simple-underline">
                       {webinar.title}
                     </h3>
                     <p className="text-gray-600 dark:text-gray-400 line-clamp-2">{webinar.description}</p>
@@ -348,10 +363,16 @@ export default async function Home() {
       {/* Featured Podcasts */}
       <section className="py-16 bg-white dark:bg-black">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold mb-12">Podcast Pilihan</h2>
+          <h2 className="text-3xl font-bold mb-12 text-gray-900 dark:text-white relative inline-block">
+            Podcast Pilihan
+            <span className="absolute -bottom-1 left-0 w-full h-px bg-gradient-to-r from-red-600 via-transparent to-transparent"></span>
+          </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {featuredPodcasts.map((podcast, index) => (
-              <article key={podcast.id} className={`group ${index >= 2 ? "hidden sm:block" : ""}`}>
+              <article
+                key={podcast.id}
+                className={`group simple-hover transition-all ${index >= 2 ? "hidden sm:block" : ""}`}
+              >
                 <Link href={podcast.audio_url}>
                   <div
                     className="relative aspect-[16/9] mb-4 bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden"
@@ -361,12 +382,16 @@ export default async function Home() {
                       src={podcast.image || "/placeholder.svg"}
                       alt={podcast.title}
                       fill
-                      className="object-cover group-hover:opacity-90 transition-opacity"
+                      className="object-cover transition-opacity duration-300 group-hover:opacity-90"
                     />
+                    <div className="absolute bottom-0 left-0 p-4">
+                      <span className="inline-block bg-red-600 text-white text-xs px-2 py-1 rounded-full">
+                        {podcast.category}
+                      </span>
+                    </div>
                   </div>
                   <div className="space-y-2">
-                    <span className="text-sm font-medium text-red-600">{podcast.category}</span>
-                    <h3 className="text-xl font-bold group-hover:text-red-600 transition-colors line-clamp-2">
+                    <h3 className="text-xl font-bold group-hover:text-red-600 transition-colors line-clamp-2 simple-underline">
                       {podcast.title}
                     </h3>
                     <p className="text-gray-600 dark:text-gray-400 line-clamp-2">{podcast.description}</p>
@@ -381,10 +406,16 @@ export default async function Home() {
       {/* Educational Content */}
       <section className="py-16 bg-gray-50 dark:bg-gray-900">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold mb-12">Konten Edukatif</h2>
+          <h2 className="text-3xl font-bold mb-12 text-gray-900 dark:text-white relative inline-block">
+            Konten Edukatif
+            <span className="absolute -bottom-1 left-0 w-full h-px bg-gradient-to-r from-red-600 via-transparent to-transparent"></span>
+          </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {featuredContent.map((content, index) => (
-              <article key={content.id} className={`group ${index >= 2 ? "hidden sm:block" : ""}`}>
+              <article
+                key={content.id}
+                className={`group simple-hover transition-all ${index >= 2 ? "hidden sm:block" : ""}`}
+              >
                 <Link href={content.content_url}>
                   <div
                     className="relative aspect-[16/9] mb-4 bg-gray-100 dark:bg-gray-800 rounded-lg overflow-hidden"
@@ -394,12 +425,16 @@ export default async function Home() {
                       src={content.image || "/placeholder.svg"}
                       alt={content.title}
                       fill
-                      className="object-cover group-hover:opacity-90 transition-opacity"
+                      className="object-cover transition-opacity duration-300 group-hover:opacity-90"
                     />
+                    <div className="absolute bottom-0 left-0 p-4">
+                      <span className="inline-block bg-red-600 text-white text-xs px-2 py-1 rounded-full">
+                        {content.category}
+                      </span>
+                    </div>
                   </div>
                   <div className="space-y-2">
-                    <span className="text-sm font-medium text-red-600">{content.category}</span>
-                    <h3 className="text-xl font-bold group-hover:text-red-600 transition-colors line-clamp-2">
+                    <h3 className="text-xl font-bold group-hover:text-red-600 transition-colors line-clamp-2 simple-underline">
                       {content.title}
                     </h3>
                     <p className="text-gray-600 dark:text-gray-400 line-clamp-2">{content.description}</p>
@@ -412,7 +447,7 @@ export default async function Home() {
       </section>
 
       {/* Support Section */}
-      <section className="py-16 bg-red-600 text-white">
+      <section className="py-16 bg-gradient-to-br from-red-600 to-red-700 text-white">
         <div className="container mx-auto px-4">
           <div className="max-w-2xl mx-auto text-center">
             <h2 className="text-3xl font-bold mb-4">Dukung Misi Kami</h2>
@@ -423,7 +458,7 @@ export default async function Home() {
               href="https://mayar.gg/logos-id"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block px-8 py-4 bg-white text-red-600 rounded-lg font-medium hover:bg-red-50 transition-colors"
+              className="inline-block px-8 py-4 bg-white text-red-600 rounded-lg font-medium hover:bg-red-50 transition-colors shadow-lg"
               style={{ borderRadius: "0.5rem" }} /* Inline style as a fallback */
             >
               Dukung Kami Sekarang
