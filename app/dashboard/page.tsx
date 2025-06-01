@@ -29,8 +29,8 @@ export default function Dashboard() {
 
   return (
     <div className="container mx-auto py-12 px-4">
-      <h1 className="text-4xl font-bold text-gray-800 dark:text-gray-100 mb-8">Dashboard</h1>
-      <p className="mb-4">
+      <h1 className="text-4xl font-bold text-foreground mb-8">Dashboard</h1>
+      <p className="mb-4 text-foreground/80">
         Welcome, {user.email}! Your role is: {role}
       </p>
     </div>

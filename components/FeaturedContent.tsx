@@ -18,11 +18,11 @@ interface FeaturedContentProps {
 
 export default function FeaturedContent({ title, link, items }: FeaturedContentProps) {
   return (
-    <section className="py-16 bg-gray-50">
+    <section className="py-16 bg-muted">
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center mb-8">
-          <h2 className="text-3xl font-semibold text-gray-800">{title}</h2>
-          <Link href={link} className="text-red-600 hover:text-red-700 font-semibold inline-flex items-center">
+          <h2 className="text-3xl font-semibold text-foreground">{title}</h2>
+          <Link href={link} className="text-primary hover:text-primary/90 font-semibold inline-flex items-center">
             View All <ArrowRight className="ml-2 w-4 h-4" />
           </Link>
         </div>
@@ -30,20 +30,23 @@ export default function FeaturedContent({ title, link, items }: FeaturedContentP
           {items.slice(0, 3).map((item, index) => (
             <div
               key={index}
-              className={`bg-white rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-1 ${index === 2 ? "hidden sm:block" : ""}`}
+              className={`bg-card text-card-foreground rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-1 ${index === 2 ? "hidden sm:block" : ""}`}
             >
               <Image
-                src={item.image || "/placeholder.svg"}
+                src={item.image || "/placeholder.svg?height=225&width=400&query=featured+content"}
                 alt={item.title}
                 width={400}
                 height={225}
                 className="w-full h-48 object-cover"
               />
               <div className="p-4">
-                <span className="text-sm font-medium text-red-600 mb-2 block">{item.category}</span>
-                <h3 className="text-xl font-semibold text-gray-800 mb-2 line-clamp-1">{item.title}</h3>
-                <p className="text-sm text-gray-600 mb-4 line-clamp-2">{item.description}</p>
-                <Link href={item.link} className="text-red-600 hover:text-red-700 font-medium inline-flex items-center">
+                <span className="text-sm font-medium text-primary mb-2 block">{item.category}</span>
+                <h3 className="text-xl font-semibold text-card-foreground mb-2 line-clamp-1">{item.title}</h3>
+                <p className="text-sm text-muted-foreground mb-4 line-clamp-2">{item.description}</p>
+                <Link
+                  href={item.link}
+                  className="text-primary hover:text-primary/90 font-medium inline-flex items-center"
+                >
                   Learn More <ArrowRight className="ml-2 w-4 h-4" />
                 </Link>
               </div>

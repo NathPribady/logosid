@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react"
 import Link from "next/link"
 import { Menu, X } from "lucide-react"
+import { cn } from "@/lib/utils"
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -10,105 +11,121 @@ export function Header() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const isScrolled = window.scrollY > 10
-      if (isScrolled !== scrolled) {
-        setScrolled(isScrolled)
-      }
+      setScrolled(window.scrollY > 10)
+    }
+    window.addEventListener("scroll", handleScroll)
+    handleScroll() // Call on mount to set initial state based on scroll position
+
+    // Lock body scroll when mobile menu is open
+    if (isMenuOpen) {
+      document.body.style.overflow = "hidden"
+    } else {
+      document.body.style.overflow = ""
     }
 
-    window.addEventListener("scroll", handleScroll)
+    // Cleanup function to remove event listener and reset body overflow
     return () => {
       window.removeEventListener("scroll", handleScroll)
+      document.body.style.overflow = ""
     }
-  }, [scrolled])
+  }, [isMenuOpen]) // Re-run effect if isMenuOpen changes
+
+  // Navigation link styles based on the screenshot (pink text)
+  const navLinkClasses = cn(
+    "py-2 text-sm font-medium text-primary hover:text-primary/80 transition-colors duration-150 nav-link",
+  )
+  // Mobile navigation link styles
+  const mobileNavLinkClasses =
+    "block py-3 px-4 rounded-md text-base font-medium text-foreground hover:bg-muted hover:text-primary transition-colors duration-150"
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? "bg-white/90 dark:bg-black/90 backdrop-blur-md shadow-md" : "bg-transparent"
-      }`}
+      className={cn(
+        "fixed top-0 left-0 right-0 z-50 transition-colors duration-200",
+        scrolled || isMenuOpen
+          ? "bg-muted/95 backdrop-blur-sm shadow-header border-b border-border/50" // Scrolled: light gray bg, subtle shadow
+          : "bg-transparent border-b border-transparent", // Initial: transparent
+      )}
     >
-      <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-16">
-          <div className="flex items-center gap-4">
-            <button
-              className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg md:hidden transition-colors"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-            >
-              {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-              <span className="sr-only">Menu</span>
-            </button>
-            <Link href="/" className="text-2xl font-bold text-red-600 hover:text-red-700 transition-colors">
-              Logos ID
+      <div className="container">
+        <div className="flex items-center justify-between h-16 md:h-20">
+          {/* Logo */}
+          <Link
+            href="/"
+            className="text-xl md:text-2xl font-bold text-primary hover:opacity-80 transition-opacity duration-150"
+          >
+            Logos ID
+          </Link>
+
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex items-center space-x-5 lg:space-x-7">
+            <Link href="/webinars" className={navLinkClasses}>
+              WEBINAR
             </Link>
-          </div>
-          <nav className="hidden md:flex items-center space-x-6">
-            <Link
-              href="/webinars"
-              className="text-sm font-medium hover:text-red-600 transition-colors simple-underline"
-            >
-              WEBINARS
+            <Link href="/podcasts" className={navLinkClasses}>
+              PODCAST
             </Link>
-            <Link
-              href="/podcasts"
-              className="text-sm font-medium hover:text-red-600 transition-colors simple-underline"
-            >
-              PODCASTS
-            </Link>
-            <Link href="/content" className="text-sm font-medium hover:text-red-600 transition-colors simple-underline">
-              CONTENT
+            <Link href="/content" className={navLinkClasses}>
+              KONTEN
             </Link>
             <Link
               href="https://mayar.gg/logos-id"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-red-600 text-white px-4 py-2 text-sm font-medium rounded-lg hover:bg-red-700 transition-colors shadow-md"
-              style={{ borderRadius: "0.5rem" }} /* Inline style as a fallback */
+              className="btn btn-primary btn-md ml-3" // Solid pink "Support Us" button
             >
               SUPPORT US
             </Link>
           </nav>
-        </div>
-      </div>
-      {isMenuOpen && (
-        <div className="md:hidden bg-white/95 dark:bg-black/95 backdrop-blur-md border-t border-gray-200 dark:border-gray-800">
-          <div className="container mx-auto px-4 py-4">
-            <nav className="flex flex-col space-y-4">
-              <Link
-                href="/webinars"
-                className="text-sm font-medium hover:text-red-600 transition-colors p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                WEBINARS
-              </Link>
-              <Link
-                href="/podcasts"
-                className="text-sm font-medium hover:text-red-600 transition-colors p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                PODCASTS
-              </Link>
-              <Link
-                href="/content"
-                className="text-sm font-medium hover:text-red-600 transition-colors p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                CONTENT
-              </Link>
-              <Link
-                href="https://mayar.gg/logos-id"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-red-600 text-white px-4 py-2 text-sm font-medium rounded-lg hover:bg-red-700 transition-colors shadow-md inline-block"
-                style={{ borderRadius: "0.5rem" }} /* Inline style as a fallback */
-                onClick={() => setIsMenuOpen(false)}
-              >
-                SUPPORT US
-              </Link>
-            </nav>
+
+          {/* Mobile Menu Toggle */}
+          <div className="md:hidden">
+            <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="btn btn-ghost btn-icon p-2 text-primary" // Pink menu icon
+              aria-label="Toggle menu"
+              aria-expanded={isMenuOpen}
+              aria-controls="mobile-menu"
+            >
+              {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
           </div>
         </div>
-      )}
+      </div>
+
+      {/* Mobile Menu Panel */}
+      <div
+        id="mobile-menu"
+        className={cn(
+          "md:hidden fixed inset-0 top-16 bg-background z-40", // Covers screen below header
+          isMenuOpen ? "block" : "hidden", // Simple show/hide
+          "overflow-y-auto p-4 pt-6", // Padding for content within mobile menu
+        )}
+      >
+        <nav className="container flex flex-col space-y-2">
+          <Link href="/webinars" className={mobileNavLinkClasses} onClick={() => setIsMenuOpen(false)}>
+            WEBINAR
+          </Link>
+          <Link href="/podcasts" className={mobileNavLinkClasses} onClick={() => setIsMenuOpen(false)}>
+            PODCAST
+          </Link>
+          <Link href="/content" className={mobileNavLinkClasses} onClick={() => setIsMenuOpen(false)}>
+            KONTEN
+          </Link>
+          {/* Separator and "Support Us" button in mobile menu */}
+          <div className="pt-5 mt-3 border-t border-border">
+            <Link
+              href="https://mayar.gg/logos-id"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-primary w-full" // Full-width pink button
+              onClick={() => setIsMenuOpen(false)}
+            >
+              SUPPORT US
+            </Link>
+          </div>
+        </nav>
+      </div>
     </header>
   )
 }

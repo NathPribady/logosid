@@ -2,96 +2,151 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-rgb: 255, 255, 255;
-}
+@layer base {
+  :root {
+    --background: 240 10% 97%; /* Slightly warmer off-white */
+    --foreground: 240 10% 15%;
 
-.dark {
-  --foreground-rgb: 255, 255, 255;
-  --background-rgb: 0, 0, 0;
-}
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 15%;
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: rgb(var(--background-rgb));
-  font-feature-settings: "ss01" on, "ss02" on, "cv01" on, "cv03" on;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 15%;
+
+    --primary: 337 75% 48%; /* #D91A6B */
+    --primary-active: 337 75% 42%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 337 75% 48%;
+    --secondary-foreground: 337 75% 48%;
+
+    --muted: 240 5% 94%; /* Slightly more tinted */
+    --muted-foreground: 240 5% 45%;
+
+    --accent: 190 65% 58%;
+    --accent-foreground: 240 10% 13%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 240 5% 88%;
+    --input: 240 5% 88%;
+    --ring: 337 70% 52%;
+
+    --radius: 0.375rem;
+  }
 }
 
 @layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "ss01" on, "ss02" on, "cv01" on, "cv03" on;
+  }
+
   h1,
   h2,
   h3,
   h4,
   h5,
   h6 {
-    @apply tracking-tight;
+    @apply font-semibold text-foreground;
   }
 
-  /* Ensure rounded corners work properly */
-  .rounded-lg {
-    border-radius: 0.5rem;
+  p {
+    @apply text-foreground leading-relaxed;
+  }
+  p.text-muted {
+    @apply text-muted-foreground;
   }
 
-  .rounded-xl {
-    border-radius: 1rem;
+  a:not(.btn):not(.nav-link) {
+    @apply text-primary hover:text-primary/80 transition-colors duration-150;
   }
 
-  .rounded-full {
-    border-radius: 9999px;
+  .section-padding {
+    @apply py-10 md:py-14 lg:py-16;
+  }
+  .container {
+    @apply px-4 sm:px-6 lg:px-8;
   }
 }
 
-.container {
-  @apply max-w-7xl mx-auto;
-}
-
-/* Add explicit button styles */
 @layer components {
   .btn {
-    @apply inline-flex items-center justify-center rounded-lg px-4 py-2 transition-colors;
+    @apply inline-flex items-center justify-center rounded-md text-sm font-medium tracking-normal
+           ring-offset-background transition-colors duration-150 ease-in-out
+           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1
+           disabled:pointer-events-none disabled:opacity-50;
   }
 
   .btn-primary {
-    @apply bg-red-600 text-white hover:bg-red-700;
+    @apply bg-primary text-primary-foreground shadow-sm hover:bg-primary/90 active:bg-primary-active font-semibold;
   }
 
-  .card {
-    @apply bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden;
+  .btn-outline-primary {
+    @apply bg-transparent border border-primary text-primary hover:bg-primary/5 active:bg-primary/10 font-semibold;
   }
 
-  /* Simple, elegant animations */
-  .simple-hover:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  .btn-secondary {
+    @apply bg-muted text-muted-foreground border border-transparent hover:bg-border active:bg-border/80;
   }
 
-  /* Gradient text */
-  .gradient-text {
-    @apply text-transparent bg-clip-text;
-    background-image: linear-gradient(to right, #f43f5e, #ec4899);
+  .btn-accent {
+    @apply bg-accent text-accent-foreground shadow-sm hover:bg-accent/90 font-semibold;
+  }
+  .btn-destructive {
+    @apply bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90 font-semibold;
+  }
+  .btn-ghost {
+    @apply bg-transparent text-primary hover:bg-primary/10 active:bg-primary/20;
+  }
+  .btn-link {
+    @apply text-primary underline-offset-4 hover:underline hover:text-primary/80 font-medium;
   }
 
-  /* Simple animated underline */
-  .simple-underline {
-    position: relative;
+  .btn-lg {
+    @apply h-11 px-6 text-base;
+  }
+  .btn-md {
+    @apply h-10 px-5;
+  }
+  .btn-sm {
+    @apply h-9 px-3 text-xs;
+  }
+  .btn-icon {
+    @apply h-10 w-10;
   }
 
-  .simple-underline::after {
-    content: "";
-    position: absolute;
-    width: 100%;
-    transform: scaleX(0);
-    height: 2px;
-    bottom: -2px;
-    left: 0;
-    background-color: currentColor;
-    transform-origin: bottom right;
-    transition: transform 0.3s ease-out;
+  .card-base {
+    @apply bg-card text-card-foreground rounded-lg border border-border shadow-card 
+           transition-shadow duration-200 ease-out hover:shadow-card-hover;
   }
 
-  .simple-underline:hover::after {
-    transform: scaleX(1);
-    transform-origin: bottom left;
+  /* Geometric shapes and decorative elements */
+  .hero-shape-1 {
+    @apply absolute top-10 right-10 w-32 h-32 bg-gradient-to-br from-primary/20 to-accent/20 rounded-full blur-xl;
+  }
+
+  .hero-shape-2 {
+    @apply absolute bottom-20 left-20 w-24 h-24 bg-gradient-to-tr from-accent/30 to-primary/30 rounded-lg rotate-45 blur-lg;
+  }
+
+  .hero-shape-3 {
+    @apply absolute top-1/2 right-1/4 w-16 h-16 bg-primary/10 rounded-full;
+  }
+
+  .hero-shape-4 {
+    @apply absolute bottom-1/3 right-10 w-20 h-20 bg-accent/15 rounded-lg rotate-12;
+  }
+
+  .floating-circle {
+    @apply absolute rounded-full bg-gradient-to-br from-primary/10 to-accent/10;
+  }
+
+  .floating-square {
+    @apply absolute bg-gradient-to-br from-accent/15 to-primary/15 rotate-45;
   }
 }

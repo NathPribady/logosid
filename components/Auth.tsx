@@ -22,32 +22,32 @@ export default function Auth() {
   }
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100 dark:bg-gray-900">
-      <form className="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-md w-96" onSubmit={handleLogin}>
-        <h2 className="text-2xl font-bold mb-4 text-gray-800 dark:text-gray-200">Login / Sign Up</h2>
+    <div className="flex justify-center items-center min-h-screen bg-muted">
+      <form className="bg-card text-card-foreground p-8 rounded-lg shadow-md w-96" onSubmit={handleLogin}>
+        <h2 className="text-2xl font-bold mb-4 text-card-foreground">Login / Sign Up</h2>
         <input
-          className="w-full p-2 mb-4 border rounded dark:bg-gray-700 dark:border-gray-600 text-gray-800 dark:text-gray-200"
+          className="w-full p-2 mb-4 border border-input bg-background text-foreground rounded-md"
           type="email"
           placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
         <input
-          className="w-full p-2 mb-4 border rounded dark:bg-gray-700 dark:border-gray-600 text-gray-800 dark:text-gray-200"
+          className="w-full p-2 mb-4 border border-input bg-background text-foreground rounded-md"
           type="password"
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
         <button
-          className="w-full p-2 mb-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+          className="w-full p-2 mb-2 bg-primary text-primary-foreground rounded-md hover:bg-primary/90"
           type="submit"
           disabled={loading}
         >
           {loading ? "Loading..." : "Login"}
         </button>
         <button
-          className="w-full p-2 bg-green-600 text-white rounded hover:bg-green-700"
+          className="w-full p-2 bg-accent text-accent-foreground rounded-md hover:bg-accent/90"
           onClick={handleSignUp}
           disabled={loading}
         >
