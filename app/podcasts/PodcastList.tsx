@@ -55,9 +55,9 @@ export default function PodcastList({ initialPodcasts }: { initialPodcasts: Podc
               rel="noopener noreferrer"
               className="group block card-base overflow-hidden hover:scale-[1.02] transition-transform duration-200"
             >
-              <div className="relative aspect-video overflow-hidden">
+              <div className="relative aspect-[4/5] overflow-hidden">
                 <Image
-                  src={podcast.image || "/placeholder.svg?height=225&width=400&query=podcast+thumbnail"}
+                  src={podcast.image || "/placeholder.svg?height=500&width=400&query=podcast+thumbnail"}
                   alt={podcast.title}
                   fill
                   className="object-cover transition-transform duration-300 group-hover:scale-105"

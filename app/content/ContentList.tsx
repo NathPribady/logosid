@@ -55,9 +55,9 @@ export default function ContentList({ initialContent }: { initialContent: Conten
               rel="noopener noreferrer"
               className="group block card-base overflow-hidden hover:scale-[1.02] transition-transform duration-200"
             >
-              <div className="relative aspect-video overflow-hidden">
+              <div className="relative aspect-[4/5] overflow-hidden">
                 <Image
-                  src={item.image || "/placeholder.svg?height=225&width=400&query=content+thumbnail"}
+                  src={item.image || "/placeholder.svg?height=500&width=400&query=content+thumbnail"}
                   alt={item.title}
                   fill
                   className="object-cover transition-transform duration-300 group-hover:scale-105"

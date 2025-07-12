@@ -29,9 +29,9 @@ export default async function Home() {
   const announcementCards = [
     {
       title: "Bahas Pendidikan",
-      image: "/images/bahas-pendidikan.png",
+      image: "https://i.postimg.cc/nr0TR9WY/Whats-App-Image-2025-06-30-at-18-10-33.jpg",
       tag: "Cohort Based Course",
-      date: "Mulai 23 Mei 2025",
+      date: "Mulai 18 Juli 2025",
       description: "Kelas diskusi intensif membahas teori dan praktik pendidikan.",
       link: "https://logos-id.myr.id/pl/bahas-pendidikan",
       tagBg: "bg-primary",
@@ -149,9 +149,9 @@ export default async function Home() {
                   item.borderColor,
                 )}
               >
-                <div className="relative w-full aspect-[16/10]">
+                <div className="relative w-full aspect-[4/5]">
                   <Image
-                    src={item.image || "/placeholder.svg?height=250&width=400&query=announcement"}
+                    src={item.image || "/placeholder.svg?height=500&width=400&query=announcement"}
                     alt={item.title}
                     fill
                     className="object-cover"
@@ -240,8 +240,7 @@ export default async function Home() {
           <div className="max-w-lg mx-auto text-center">
             <h2 className="text-3xl md:text-3xl font-bold mb-4 text-white">Dukung Misi Kami</h2>
             <p className="text-base mb-8 opacity-90">
-              Bantu kami terus menyediakan konten edukatif berkualitas untuk pelajar di seluruh
-              Indonesia.
+              Bantu kami terus menyediakan konten edukatif berkualitas untuk pelajar di seluruh Indonesia.
             </p>
             <Link
               href="https://mayar.gg/logos-id"
@@ -319,9 +318,9 @@ function FeaturedItemsSection({ title, items, type, bgColor = "bg-white" }: Feat
               rel={getLink(item).startsWith("http") ? "noopener noreferrer" : ""}
               className="group block card-base overflow-hidden hover:scale-[1.02] transition-transform duration-200"
             >
-              <div className="relative aspect-video overflow-hidden">
+              <div className="relative aspect-[4/5] overflow-hidden">
                 <Image
-                  src={item.image || `/placeholder.svg?height=225&width=400&query=${type}+thumbnail`}
+                  src={item.image || `/placeholder.svg?height=500&width=400&query=${type}+thumbnail`}
                   alt={item.title}
                   fill
                   className="object-cover transition-transform duration-300 group-hover:scale-105"

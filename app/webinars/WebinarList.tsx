@@ -55,9 +55,9 @@ export default function WebinarList({ initialWebinars }: { initialWebinars: Webi
               rel="noopener noreferrer"
               className="group block card-base overflow-hidden hover:scale-[1.02] transition-transform duration-200"
             >
-              <div className="relative aspect-video overflow-hidden">
+              <div className="relative aspect-[4/5] overflow-hidden">
                 <Image
-                  src={webinar.image || "/placeholder.svg?height=225&width=400&query=webinar+thumbnail"}
+                  src={webinar.image || "/placeholder.svg?height=500&width=400&query=webinar+thumbnail"}
                   alt={webinar.title}
                   fill
                   className="object-cover transition-transform duration-300 group-hover:scale-105"
