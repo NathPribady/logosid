@@ -1,65 +1,103 @@
 "use client"
 
-import { useState } from "react"
-import Image from "next/image"
+import { useState, useEffect } from "react"
 import Link from "next/link"
-import type { Podcast } from "../../lib/podcasts"
-import { cn } from "@/lib/utils"
-import { PlayCircle } from "lucide-react"
+import Image from "next/image"
+import { Play } from "lucide-react"
+import { getPodcasts } from "../../lib/podcasts"
+import { getCategories } from "../../lib/categories"
 
-export default function PodcastList({ initialPodcasts }: { initialPodcasts: Podcast[] }) {
-  const [podcasts] = useState(initialPodcasts)
-  const [selectedCategory, setSelectedCategory] = useState<string>("all")
+interface Podcast {
+  id: number
+  title: string
+  description: string
+  image: string
+  category: string
+  audio_url?: string
+}
 
-  const categories = ["all", ...Array.from(new Set(podcasts.map((podcast) => podcast.category)))]
+interface Category {
+  id: number
+  name: string
+}
 
-  const handleCategoryChange = (category: string) => {
-    setSelectedCategory(category)
-  }
+export default function PodcastList() {
+  const [podcasts, setPodcasts] = useState<Podcast[]>([])
+  const [categories, setCategories] = useState<Category[]>([])
+  const [selectedCategory, setSelectedCategory] = useState<string>("Semua")
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const [podcastsData, categoriesData] = await Promise.all([getPodcasts(), getCategories()])
+        setPodcasts(podcastsData)
+        setCategories(categoriesData)
+      } catch (error) {
+        console.error("Error fetching data:", error)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchData()
+  }, [])
 
   const filteredPodcasts =
-    selectedCategory === "all" ? podcasts : podcasts.filter((podcast) => podcast.category === selectedCategory)
+    selectedCategory === "Semua" ? podcasts : podcasts.filter((podcast) => podcast.category === selectedCategory)
+
+  if (loading) {
+    return <div>Loading...</div>
+  }
 
   return (
-    <div className="pt-20 pb-16 bg-gray-50 min-h-screen">
+    <div className="pt-20 md:pt-24 pb-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
         <div className="mb-12">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">Podcast</h1>
-          <p className="text-lg text-gray-600">
-            Dengarkan diskusi mendalam dan wawasan dari para ahli di berbagai bidang.
+          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Podcast</h1>
+          <p className="text-lg text-gray-600 mb-8">
+            Dengarkan diskusi mendalam tentang berbagai topik edukatif dan pemikiran kritis.
           </p>
-        </div>
 
-        {/* Filter */}
-        <div className="mb-8">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">Filter berdasarkan Kategori</h3>
-          <div className="flex flex-wrap gap-3">
-            {categories.map((category) => (
+          {/* Filter Buttons */}
+          <div className="mb-8">
+            <h3 className="text-lg font-semibold text-gray-900 mb-4">Filter berdasarkan Kategori</h3>
+            <div className="flex flex-wrap gap-2">
               <button
-                key={category}
-                onClick={() => handleCategoryChange(category)}
-                className={cn(
-                  "px-4 py-2 rounded-lg font-medium transition-colors",
-                  selectedCategory === category
+                onClick={() => setSelectedCategory("Semua")}
+                className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                  selectedCategory === "Semua"
                     ? "bg-primary text-white"
-                    : "bg-white text-gray-700 border border-gray-200 hover:bg-gray-50",
-                )}
+                    : "bg-white text-gray-700 border border-gray-300 hover:bg-gray-50 hover:border-primary/50"
+                }`}
               >
-                {category === "all" ? "Semua" : category.charAt(0).toUpperCase() + category.slice(1)}
+                Semua
               </button>
-            ))}
+              {categories.map((category) => (
+                <button
+                  key={category.id}
+                  onClick={() => setSelectedCategory(category.name)}
+                  className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                    selectedCategory === category.name
+                      ? "bg-primary text-white"
+                      : "bg-white text-gray-700 border border-gray-300 hover:bg-gray-50 hover:border-primary/50"
+                  }`}
+                >
+                  {category.name}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
 
-        {/* Podcasts Grid */}
+        {/* Podcast Grid */}
         {filteredPodcasts.length === 0 ? (
           <div className="text-center py-12">
-            <p className="text-gray-500 text-lg">Tidak ada podcast ditemukan untuk kategori ini.</p>
+            <p className="text-gray-500">Tidak ada podcast ditemukan untuk kategori ini.</p>
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredPodcasts.map((podcast: Podcast) => (
+            {filteredPodcasts.map((podcast) => (
               <Link
                 key={podcast.id}
                 href={podcast.audio_url || "#"}
@@ -69,33 +107,27 @@ export default function PodcastList({ initialPodcasts }: { initialPodcasts: Podc
               >
                 <div className="relative aspect-[4/5]">
                   <Image
-                    src={podcast.image || "/placeholder.svg?height=500&width=400&query=podcast+thumbnail"}
+                    src={podcast.image || `/placeholder.svg?height=500&width=400&query=podcast+${podcast.title}`}
                     alt={podcast.title}
                     fill
                     className="object-cover group-hover:scale-105 transition-transform duration-300"
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   />
                   <div className="absolute inset-0 bg-black/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                    <PlayCircle className="w-12 h-12 text-white" />
+                    <Play className="w-12 h-12 text-white" />
                   </div>
                 </div>
                 <div className="p-6">
-                  <div className="flex items-center justify-between mb-3">
-                    <span className="text-xs font-medium text-primary bg-pink-50 px-2 py-1 rounded-full">
-                      {podcast.category}
-                    </span>
-                    <span className="text-xs text-gray-500">
-                      {new Date(podcast.publish_date).toLocaleDateString("id-ID", {
-                        year: "numeric",
-                        month: "short",
-                        day: "numeric",
-                      })}
-                    </span>
-                  </div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2 group-hover:text-primary transition-colors line-clamp-2">
+                  <span className="text-xs font-medium text-primary bg-pink-50 px-2 py-1 rounded-full">
+                    {podcast.category}
+                  </span>
+                  <h3 className="text-lg font-semibold text-gray-900 mt-3 mb-2 group-hover:text-primary transition-colors line-clamp-2">
                     {podcast.title}
                   </h3>
                   <p className="text-gray-600 text-sm line-clamp-3">{podcast.description}</p>
+                  <div className="mt-4">
+                    <span className="text-primary font-medium text-sm">Dengarkan Podcast →</span>
+                  </div>
                 </div>
               </Link>
             ))}

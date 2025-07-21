@@ -1,65 +1,102 @@
 "use client"
 
-import { useState } from "react"
-import Image from "next/image"
+import { useState, useEffect } from "react"
 import Link from "next/link"
-import type { Content } from "../../lib/content"
-import { cn } from "@/lib/utils"
-import { ArrowRight } from "lucide-react"
+import Image from "next/image"
+import { getContent } from "../../lib/content"
+import { getCategories } from "../../lib/categories"
 
-export default function ContentList({ initialContent }: { initialContent: Content[] }) {
-  const [contentItems] = useState(initialContent)
-  const [selectedCategory, setSelectedCategory] = useState<string>("all")
+interface Content {
+  id: number
+  title: string
+  description: string
+  image: string
+  category: string
+  content_url?: string
+}
 
-  const categories = ["all", ...Array.from(new Set(contentItems.map((item) => item.category)))]
+interface Category {
+  id: number
+  name: string
+}
 
-  const handleCategoryChange = (category: string) => {
-    setSelectedCategory(category)
-  }
+export default function ContentList() {
+  const [content, setContent] = useState<Content[]>([])
+  const [categories, setCategories] = useState<Category[]>([])
+  const [selectedCategory, setSelectedCategory] = useState<string>("Semua")
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const [contentData, categoriesData] = await Promise.all([getContent(), getCategories()])
+        setContent(contentData)
+        setCategories(categoriesData)
+      } catch (error) {
+        console.error("Error fetching data:", error)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchData()
+  }, [])
 
   const filteredContent =
-    selectedCategory === "all" ? contentItems : contentItems.filter((item) => item.category === selectedCategory)
+    selectedCategory === "Semua" ? content : content.filter((item) => item.category === selectedCategory)
+
+  if (loading) {
+    return <div>Loading...</div>
+  }
 
   return (
-    <div className="pt-20 pb-16 bg-gray-50 min-h-screen">
+    <div className="pt-20 md:pt-24 pb-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
         <div className="mb-12">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">Konten Edukatif</h1>
-          <p className="text-lg text-gray-600">
-            Temukan artikel, panduan, dan sumber belajar lainnya untuk memperluas pengetahuan Anda.
+          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Konten Edukatif</h1>
+          <p className="text-lg text-gray-600 mb-8">
+            Baca artikel dan konten edukatif berkualitas tentang berbagai topik akademik.
           </p>
-        </div>
 
-        {/* Filter */}
-        <div className="mb-8">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">Filter berdasarkan Kategori</h3>
-          <div className="flex flex-wrap gap-3">
-            {categories.map((category) => (
+          {/* Filter Buttons */}
+          <div className="mb-8">
+            <h3 className="text-lg font-semibold text-gray-900 mb-4">Filter berdasarkan Kategori</h3>
+            <div className="flex flex-wrap gap-2">
               <button
-                key={category}
-                onClick={() => handleCategoryChange(category)}
-                className={cn(
-                  "px-4 py-2 rounded-lg font-medium transition-colors",
-                  selectedCategory === category
+                onClick={() => setSelectedCategory("Semua")}
+                className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                  selectedCategory === "Semua"
                     ? "bg-primary text-white"
-                    : "bg-white text-gray-700 border border-gray-200 hover:bg-gray-50",
-                )}
+                    : "bg-white text-gray-700 border border-gray-300 hover:bg-gray-50 hover:border-primary/50"
+                }`}
               >
-                {category === "all" ? "Semua" : category.charAt(0).toUpperCase() + category.slice(1)}
+                Semua
               </button>
-            ))}
+              {categories.map((category) => (
+                <button
+                  key={category.id}
+                  onClick={() => setSelectedCategory(category.name)}
+                  className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                    selectedCategory === category.name
+                      ? "bg-primary text-white"
+                      : "bg-white text-gray-700 border border-gray-300 hover:bg-gray-50 hover:border-primary/50"
+                  }`}
+                >
+                  {category.name}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
 
         {/* Content Grid */}
         {filteredContent.length === 0 ? (
           <div className="text-center py-12">
-            <p className="text-gray-500 text-lg">Tidak ada konten ditemukan untuk kategori ini.</p>
+            <p className="text-gray-500">Tidak ada konten ditemukan untuk kategori ini.</p>
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredContent.map((item: Content) => (
+            {filteredContent.map((item) => (
               <Link
                 key={item.id}
                 href={item.content_url || "#"}
@@ -69,7 +106,7 @@ export default function ContentList({ initialContent }: { initialContent: Conten
               >
                 <div className="relative aspect-[4/5]">
                   <Image
-                    src={item.image || "/placeholder.svg?height=500&width=400&query=content+thumbnail"}
+                    src={item.image || `/placeholder.svg?height=500&width=400&query=article+${item.title}`}
                     alt={item.title}
                     fill
                     className="object-cover group-hover:scale-105 transition-transform duration-300"
@@ -83,10 +120,9 @@ export default function ContentList({ initialContent }: { initialContent: Conten
                   <h3 className="text-lg font-semibold text-gray-900 mt-3 mb-2 group-hover:text-primary transition-colors line-clamp-2">
                     {item.title}
                   </h3>
-                  <p className="text-gray-600 text-sm mb-4 line-clamp-3">{item.description}</p>
-                  <div className="text-sm text-primary font-medium inline-flex items-center">
-                    Baca Selengkapnya
-                    <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
+                  <p className="text-gray-600 text-sm line-clamp-3">{item.description}</p>
+                  <div className="mt-4">
+                    <span className="text-primary font-medium text-sm">Baca Selengkapnya →</span>
                   </div>
                 </div>
               </Link>
