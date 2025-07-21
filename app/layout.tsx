@@ -1,39 +1,21 @@
 import type React from "react"
-import "./globals.css"
+import type { Metadata } from "next"
 import { Inter } from "next/font/google"
+import "./globals.css"
+import Header from "@/components/Header"
 import Link from "next/link"
-import { Header } from "../components/Header"
-import { cn } from "@/lib/utils"
 import { Twitter, Instagram, Youtube, Music, Linkedin } from "lucide-react"
 
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-})
+const inter = Inter({ subsets: ["latin"] })
 
-export const metadata = {
-  title: "Logos ID - Empowering Minds Through Education",
-  description: "A non-profit educational platform providing webinars, podcasts, and educational content.",
+export const metadata: Metadata = {
+  title: "Logos ID - Platform Pendidikan Berkualitas",
+  description:
+    "Platform pendidikan yang memberdayakan pikiran melalui sains, filsafat, politik & sejarah. Webinar, podcast, dan konten edukatif berkualitas tinggi.",
     generator: 'v0.dev'
 }
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
-  return (
-    <html lang="id" className="light">
-      <body className={cn("min-h-screen bg-background font-sans antialiased", inter.variable)}>
-        <Header />
-        <main className="mt-16">{children}</main>
-        <Footer />
-      </body>
-    </html>
-  )
-}
-
-const socialLinksFooter = [
+const socialLinks = [
   { name: "Twitter", href: "https://twitter.com/logos_id", icon: Twitter },
   { name: "Instagram", href: "https://instagram.com/_logosid", icon: Instagram },
   { name: "YouTube", href: "https://www.youtube.com/@LogosID", icon: Youtube },
@@ -41,62 +23,110 @@ const socialLinksFooter = [
   { name: "LinkedIn", href: "https://www.linkedin.com/company/logos-id", icon: Linkedin },
 ]
 
-function Footer() {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
   return (
-    <footer className="bg-slate-800 text-slate-300 section-padding">
-      <div className="container">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-12">
-          <div>
-            <h3 className="text-lg font-semibold mb-4 text-white">Tentang Logos ID</h3>
-            <p className="text-sm text-slate-300 leading-relaxed">
-              Memberdayakan pikiran melalui pendidikan. Kami menyediakan konten edukatif berkualitas tinggi, webinar,
-              dan podcast.
-            </p>
-          </div>
-          <div>
-            <h3 className="text-lg font-semibold mb-4 text-white">Tautan Cepat</h3>
-            <ul className="space-y-2">
-              <li>
-                <Link href="/webinars" className="text-sm text-slate-300 hover:text-primary transition-colors">
-                  Webinar
-                </Link>
-              </li>
-              <li>
-                <Link href="/podcasts" className="text-sm text-slate-300 hover:text-primary transition-colors">
-                  Podcast
-                </Link>
-              </li>
-              <li>
-                <Link href="/content" className="text-sm text-slate-300 hover:text-primary transition-colors">
-                  Konten Edukatif
-                </Link>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <h3 className="text-lg font-semibold mb-4 text-white">Terhubung dengan Kami</h3>
-            <div className="flex space-x-4">
-              {socialLinksFooter.map((social) => (
-                <Link
-                  key={social.name}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-slate-300 hover:text-primary transition-colors"
-                  aria-label={social.name}
-                >
-                  <social.icon className="w-5 h-5" />
-                </Link>
-              ))}
+    <html lang="id">
+      <body className={inter.className}>
+        <Header />
+        <main>{children}</main>
+
+        {/* Footer */}
+        <footer className="bg-gray-900 text-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+              {/* About */}
+              <div className="md:col-span-2">
+                <div className="flex items-center space-x-2 mb-4">
+                  <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
+                    <span className="text-white font-bold text-sm">L</span>
+                  </div>
+                  <span className="text-xl font-bold">Logos ID</span>
+                </div>
+                <p className="text-gray-300 mb-6 max-w-md">
+                  Memberdayakan pikiran melalui pendidikan. Kami menyediakan webinar, podcast, dan konten edukatif
+                  berkualitas tinggi untuk mengembangkan pemikiran kritis dan wawasan mendalam.
+                </p>
+                <div className="flex space-x-4">
+                  {socialLinks.map((social) => (
+                    <Link
+                      key={social.name}
+                      href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-gray-400 hover:text-primary transition-colors"
+                      aria-label={social.name}
+                    >
+                      <social.icon className="w-5 h-5" />
+                    </Link>
+                  ))}
+                </div>
+              </div>
+
+              {/* Quick Links */}
+              <div>
+                <h3 className="text-lg font-semibold mb-4">Tautan Cepat</h3>
+                <ul className="space-y-2">
+                  <li>
+                    <Link href="/webinars" className="text-gray-300 hover:text-white transition-colors">
+                      Webinar
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/podcasts" className="text-gray-300 hover:text-white transition-colors">
+                      Podcast
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/content" className="text-gray-300 hover:text-white transition-colors">
+                      Konten Edukatif
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/about" className="text-gray-300 hover:text-white transition-colors">
+                      Tentang Kami
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+
+              {/* Support */}
+              <div>
+                <h3 className="text-lg font-semibold mb-4">Dukungan</h3>
+                <ul className="space-y-2">
+                  <li>
+                    <Link
+                      href="https://mayar.gg/logos-id"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-gray-300 hover:text-white transition-colors"
+                    >
+                      Donasi
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/contact" className="text-gray-300 hover:text-white transition-colors">
+                      Kontak
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/faq" className="text-gray-300 hover:text-white transition-colors">
+                      FAQ
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div className="border-t border-gray-800 mt-8 pt-8 text-center">
+              <p className="text-gray-400">© 2025 Logos ID. Seluruh hak cipta dilindungi.</p>
             </div>
           </div>
-        </div>
-        <div className="mt-10 md:mt-12 border-t border-slate-700 pt-8 text-center">
-          <p className="text-xs text-slate-400">
-            &copy; {new Date().getFullYear()} Logos ID. Seluruh hak cipta dilindungi.
-          </p>
-        </div>
-      </div>
-    </footer>
+        </footer>
+      </body>
+    </html>
   )
 }

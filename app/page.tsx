@@ -1,23 +1,13 @@
 import Link from "next/link"
-import { ArrowRight, BookOpen, Calendar, Users, Twitter, Instagram, Youtube, Music, Linkedin } from "lucide-react"
+import Image from "next/image"
+import { Search, ArrowRight, Calendar, Users, BookOpen, Play } from "lucide-react"
 import { getWebinars } from "../lib/webinars"
 import { getPodcasts } from "../lib/podcasts"
 import { getContent } from "../lib/content"
-import StatCard from "../components/StatCard"
-import Image from "next/image"
-import { cn } from "@/lib/utils"
 
 export const revalidate = 3600
 
-const socialLinks = [
-  { name: "Twitter", href: "https://twitter.com/logos_id", icon: Twitter },
-  { name: "Instagram", href: "https://instagram.com/_logosid", icon: Instagram },
-  { name: "YouTube", href: "https://www.youtube.com/@LogosID", icon: Youtube },
-  { name: "Spotify", href: "https://open.spotify.com/show/2bwe0dyWnFKmqXaYCSwhML", icon: Music },
-  { name: "LinkedIn", href: "https://www.linkedin.com/company/logos-id", icon: Linkedin },
-]
-
-export default async function Home() {
+export default async function HomePage() {
   const allWebinars = await getWebinars()
   const allPodcasts = await getPodcasts()
   const allContent = await getContent()
@@ -34,10 +24,6 @@ export default async function Home() {
       date: "Mulai 18 Juli 2025",
       description: "Kelas diskusi intensif membahas teori dan praktik pendidikan.",
       link: "https://logos-id.myr.id/pl/bahas-pendidikan",
-      tagBg: "bg-primary",
-      tagText: "text-primary-foreground",
-      borderColor: "border-primary",
-      buttonClass: "btn-primary",
       buttonText: "Daftar (Donasi Seikhlasnya)!",
     },
     {
@@ -47,10 +33,6 @@ export default async function Home() {
       participants: "Terbatas 50 Peserta",
       description: "Eksplorasi mendalam pemikiran Henry Giroux.",
       link: "https://logos-id.myr.id/pl/henry-giroux-101",
-      tagBg: "bg-primary",
-      tagText: "text-white",
-      borderColor: "border-primary",
-      buttonClass: "btn-outline-primary",
       buttonText: "Daftar (Donasi Seikhlasnya)!",
     },
     {
@@ -59,130 +41,122 @@ export default async function Home() {
       tag: "Baru Diluncurkan",
       description: "400+ karya sastra, sejarah, sampai kejahatan HAM berat.",
       link: "https://langka.vercel.app",
-      tagBg: "bg-accent",
-      tagText: "text-accent-foreground",
-      borderColor: "border-accent",
-      buttonClass: "btn-accent",
-      ctaIcon: BookOpen,
       buttonText: "Baca Gratis",
     },
   ]
 
   return (
-    <div className="min-h-screen">
-      {/* Hero Section with Enhanced Design */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50/30 to-purple-50/20 section-padding pt-28 md:pt-36 lg:pt-40">
-        {/* Geometric Background Shapes */}
-        <div className="absolute inset-0 overflow-hidden">
-          {/* Large background gradients */}
-          <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-primary/8 via-accent/6 to-transparent rounded-full blur-3xl"></div>
-          <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-gradient-to-tr from-accent/6 via-primary/4 to-transparent rounded-full blur-3xl"></div>
-
-          {/* Floating geometric shapes */}
-          <div className="floating-circle w-32 h-32 top-20 right-1/4 blur-sm"></div>
-          <div className="floating-circle w-16 h-16 top-1/3 right-10"></div>
-          <div className="floating-square w-24 h-24 bottom-1/4 right-20 blur-sm"></div>
-          <div className="floating-square w-12 h-12 top-1/2 left-1/4"></div>
-
-          {/* Additional decorative elements */}
-          <div className="absolute top-1/4 left-10 w-6 h-6 bg-primary/20 rounded-full"></div>
-          <div className="absolute bottom-1/3 right-1/3 w-8 h-8 bg-accent/25 rounded-lg rotate-45"></div>
-          <div className="absolute top-2/3 left-1/3 w-4 h-4 bg-primary/15 rounded-full"></div>
-        </div>
-
-        <div className="container relative z-10 text-center md:text-left">
-          <div className="max-w-2xl mx-auto md:mx-0">
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-primary via-primary to-accent bg-clip-text text-transparent mb-6 leading-tight">
-              Berdayakan Pikiran!
-            </h1>
-            <p className="text-lg md:text-xl text-slate-600 mb-10 max-w-xl leading-relaxed">
-              Logos ID membawa sains, filsafat, politik & sejarah ke percakapan sehari-hari. Membuat 2.000+ artikel &
-              buku saintifik menjadi sederhana dan mudah diakses.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-              <Link href="/content" className="btn btn-primary btn-lg shadow-lg hover:shadow-xl">
-                Mulai Belajar <ArrowRight className="w-5 h-5 ml-2" />
-              </Link>
-              <Link href="#announcements" className="btn btn-outline-primary btn-lg border-2 hover:shadow-md">
-                Lihat Pengumuman
-              </Link>
+    <div className="pt-16">
+      {/* Hero Section */}
+      <section className="relative overflow-hidden bg-gradient-to-br from-gray-50 to-white py-20 lg:py-32">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            {/* Left Content */}
+            <div className="relative">
+              {/* Pink Circle Background */}
+              <div className="absolute -left-20 -top-20 w-80 h-80 bg-primary/10 rounded-full blur-3xl"></div>
+              <div className="relative z-10">
+                <h1 className="text-4xl lg:text-6xl font-bold text-primary mb-6">Logos ID</h1>
+                <p className="text-lg text-gray-600 mb-8 leading-relaxed">
+                  Platform pendidikan yang memberdayakan pikiran melalui sains, filsafat, politik, dan sejarah.
+                  Menyediakan webinar, podcast, dan konten edukatif berkualitas tinggi untuk mengembangkan pemikiran
+                  kritis dan wawasan mendalam.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <Link href="/webinars" className="btn btn-primary btn-lg">
+                    Jelajahi Konten
+                    <ArrowRight className="w-5 h-5 ml-2" />
+                  </Link>
+                  <Link href="#about" className="btn btn-outline btn-lg">
+                    Pelajari Lebih Lanjut
+                  </Link>
+                </div>
+              </div>
             </div>
-            <div className="mt-12 flex justify-center md:justify-start space-x-6">
-              {socialLinks.map((social) => (
-                <Link
-                  key={social.name}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-primary hover:text-primary/70 transition-all duration-200 hover:scale-110"
-                  aria-label={social.name}
-                >
-                  <social.icon className="w-5 h-5" />
-                </Link>
-              ))}
+
+            {/* Right Image */}
+            <div className="relative">
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl bg-gray-900">
+                <Image
+                  src="https://cloudfront-us-east-1.images.arcpublishing.com/spectator/OSRNH3N7LFB5XJEWUUBVS3ZWZM.png"
+                  alt="The Thinker statue representing contemplation and critical thinking"
+                  width={600}
+                  height={600}
+                  className="w-full h-auto object-cover"
+                  priority
+                />
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Announcements Section with Enhanced Background */}
-      <section id="announcements" className="relative section-padding bg-gradient-to-b from-slate-50 to-gray-50">
-        {/* Subtle background pattern */}
-        <div className="absolute inset-0 opacity-30">
-          <div className="absolute top-10 left-10 w-20 h-20 bg-primary/5 rounded-full"></div>
-          <div className="absolute top-20 right-20 w-16 h-16 bg-accent/8 rounded-lg rotate-45"></div>
-          <div className="absolute bottom-20 left-1/4 w-12 h-12 bg-primary/6 rounded-full"></div>
-          <div className="absolute bottom-10 right-1/3 w-14 h-14 bg-accent/5 rounded-lg rotate-12"></div>
+      {/* Search Section */}
+      <section className="py-16 bg-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl font-bold text-gray-900 mb-4">Temukan Wawasan Baru</h2>
+          <p className="text-lg text-gray-600 mb-8">
+            Cari dalam database kami tentang filosofi, pedagogi, psikologi, studi disabilitas, studi gender, dan teori
+            kritis.
+          </p>
+          <div className="relative max-w-2xl mx-auto">
+            <div className="relative">
+              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+              <input
+                type="text"
+                placeholder="Cari konsep, teori, atau tokoh..."
+                className="w-full pl-12 pr-4 py-4 text-lg border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent outline-none"
+              />
+            </div>
+            <button className="absolute right-2 top-2 bottom-2 px-6 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors">
+              Cari
+            </button>
+          </div>
         </div>
+      </section>
 
-        <div className="container relative z-10">
-          <h2 className="text-center text-3xl md:text-3xl font-bold mb-12 text-slate-800">
-            Pengumuman Terbaru
-            <div className="w-24 h-1 bg-gradient-to-r from-primary to-accent mx-auto mt-3 rounded-full"></div>
-          </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-8">
-            {announcementCards.map((item) => (
+      {/* Announcements Section */}
+      <section className="py-16 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">Pengumuman Terbaru</h2>
+            <div className="w-20 h-1 bg-primary mx-auto"></div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {announcementCards.map((item, index) => (
               <div
                 key={item.title}
-                className={cn(
-                  "card-base flex flex-col h-full overflow-hidden border-t-4 hover:scale-[1.02] transition-transform duration-200",
-                  item.borderColor,
-                )}
+                className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-shadow"
               >
-                <div className="relative w-full aspect-[4/5]">
+                <div className="relative aspect-[4/5]">
                   <Image
-                    src={item.image || "/placeholder.svg?height=500&width=400&query=announcement"}
+                    src={item.image || "/placeholder.svg"}
                     alt={item.title}
                     fill
                     className="object-cover"
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   />
-                  <div
-                    className={cn(
-                      "absolute top-3 left-3 text-xs font-semibold px-2.5 py-1 rounded-full shadow-sm backdrop-blur-sm",
-                      item.tagBg,
-                      item.tagText,
-                    )}
-                  >
-                    {item.tag}
+                  <div className="absolute top-4 left-4">
+                    <span className="bg-primary text-white text-xs font-medium px-3 py-1 rounded-full">{item.tag}</span>
                   </div>
                 </div>
-                <div className="p-5 flex flex-col flex-grow">
-                  <h3 className="text-lg font-semibold mb-2 text-slate-800">{item.title}</h3>
-                  <p className="text-slate-600 mb-4 flex-grow text-sm leading-relaxed">{item.description}</p>
+                <div className="p-6">
+                  <h3 className="text-xl font-semibold text-gray-900 mb-2">{item.title}</h3>
+                  <p className="text-gray-600 mb-4 text-sm leading-relaxed">{item.description}</p>
                   {(item.date || item.participants) && (
-                    <div className="flex items-center mb-4 text-xs text-slate-500">
+                    <div className="flex items-center text-xs text-gray-500 mb-4 space-x-4">
                       {item.date && (
-                        <>
-                          <Calendar className="w-3.5 h-3.5 mr-1.5 text-primary/80" />
+                        <div className="flex items-center">
+                          <Calendar className="w-4 h-4 mr-1" />
                           <span>{item.date}</span>
-                        </>
+                        </div>
                       )}
                       {item.participants && (
-                        <>
-                          <Users className="w-3.5 h-3.5 mr-1.5 ml-3 text-primary/80" />
+                        <div className="flex items-center">
+                          <Users className="w-4 h-4 mr-1" />
                           <span>{item.participants}</span>
-                        </>
+                        </div>
                       )}
                     </div>
                   )}
@@ -190,14 +164,9 @@ export default async function Home() {
                     href={item.link}
                     target={item.link.startsWith("http") ? "_blank" : "_self"}
                     rel={item.link.startsWith("http") ? "noopener noreferrer" : ""}
-                    className={cn("btn btn-md mt-auto w-full shadow-sm hover:shadow-md", item.buttonClass)}
+                    className="btn btn-primary btn-md w-full"
                   >
-                    <span>{item.buttonText}</span>
-                    {item.ctaIcon ? (
-                      <item.ctaIcon className="w-4 h-4 ml-1.5" />
-                    ) : (
-                      <ArrowRight className="w-4 h-4 ml-1.5" />
-                    )}
+                    {item.buttonText}
                   </Link>
                 </div>
               </div>
@@ -206,151 +175,188 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* Stats Section with Gradient Background */}
-      <section className="section-padding bg-gradient-to-r from-primary/5 via-accent/5 to-primary/5">
-        <div className="container">
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-5">
-            <StatCard title="Pengikut" value="220K+" icon="users" />
-            <StatCard title="Tayangan" value="800M+" icon="eye" />
-            <StatCard title="Artikel Edukatif" value="2K+" icon="book-open" />
-            <StatCard title="Peserta Kelas Live" value="12K+" icon="user-check" />
+      {/* Stats Section */}
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="text-center">
+              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Calendar className="w-8 h-8 text-primary" />
+              </div>
+              <h3 className="text-3xl font-bold text-gray-900 mb-2">50+</h3>
+              <p className="text-gray-600">Webinar Berkualitas</p>
+            </div>
+            <div className="text-center">
+              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Users className="w-8 h-8 text-primary" />
+              </div>
+              <h3 className="text-3xl font-bold text-gray-900 mb-2">10K+</h3>
+              <p className="text-gray-600">Peserta Aktif</p>
+            </div>
+            <div className="text-center">
+              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                <BookOpen className="w-8 h-8 text-primary" />
+              </div>
+              <h3 className="text-3xl font-bold text-gray-900 mb-2">200+</h3>
+              <p className="text-gray-600">Artikel & Konten</p>
+            </div>
           </div>
         </div>
       </section>
 
-      <FeaturedItemsSection title="Webinar" items={featuredWebinars} type="webinar" />
-      <FeaturedItemsSection
-        title="Podcast"
-        items={featuredPodcasts}
-        type="podcast"
-        bgColor="bg-gradient-to-b from-slate-50 to-gray-50"
-      />
-      <FeaturedItemsSection title="Konten Edukatif" items={featuredContent} type="content" />
-
-      {/* Enhanced Support Section */}
-      <section className="section-padding bg-gradient-to-r from-primary via-primary to-accent text-primary-foreground relative overflow-hidden">
-        {/* Background decorative elements */}
-        <div className="absolute inset-0">
-          <div className="absolute top-10 left-10 w-32 h-32 bg-white/5 rounded-full blur-xl"></div>
-          <div className="absolute bottom-10 right-10 w-24 h-24 bg-white/8 rounded-lg rotate-45 blur-lg"></div>
-          <div className="absolute top-1/2 right-1/4 w-16 h-16 bg-white/6 rounded-full"></div>
-        </div>
-
-        <div className="container relative z-10">
-          <div className="max-w-lg mx-auto text-center">
-            <h2 className="text-3xl md:text-3xl font-bold mb-4 text-white">Dukung Misi Kami</h2>
-            <p className="text-base mb-8 opacity-90">
-              Bantu kami terus menyediakan konten edukatif berkualitas untuk pelajar di seluruh Indonesia.
-            </p>
-            <Link
-              href="https://mayar.gg/logos-id"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn btn-lg bg-white text-primary hover:bg-gray-100 shadow-lg font-semibold hover:scale-105 transition-transform duration-200"
-            >
-              Dukung Sekarang
+      {/* Featured Webinars */}
+      <section className="py-16 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between mb-12">
+            <h2 className="text-3xl font-bold text-gray-900">Webinar Terbaru</h2>
+            <Link href="/webinars" className="text-primary hover:text-primary/80 font-medium inline-flex items-center">
+              Lihat Semua
+              <ArrowRight className="w-4 h-4 ml-1" />
             </Link>
           </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {featuredWebinars.map((webinar) => (
+              <Link
+                key={webinar.id}
+                href={webinar.link || "#"}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-shadow"
+              >
+                <div className="relative aspect-[4/5]">
+                  <Image
+                    src={webinar.image || `/placeholder.svg?height=500&width=400&query=webinar+${webinar.title}`}
+                    alt={webinar.title}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-300"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  />
+                </div>
+                <div className="p-6">
+                  <span className="text-xs font-medium text-primary bg-pink-50 px-2 py-1 rounded-full">
+                    {webinar.category}
+                  </span>
+                  <h3 className="text-lg font-semibold text-gray-900 mt-3 mb-2 group-hover:text-primary transition-colors line-clamp-2">
+                    {webinar.title}
+                  </h3>
+                  <p className="text-gray-600 text-sm line-clamp-3">{webinar.description}</p>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Podcasts */}
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between mb-12">
+            <h2 className="text-3xl font-bold text-gray-900">Podcast Pilihan</h2>
+            <Link href="/podcasts" className="text-primary hover:text-primary/80 font-medium inline-flex items-center">
+              Lihat Semua
+              <ArrowRight className="w-4 h-4 ml-1" />
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {featuredPodcasts.map((podcast) => (
+              <Link
+                key={podcast.id}
+                href={podcast.audio_url || "#"}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-shadow"
+              >
+                <div className="relative aspect-[4/5]">
+                  <Image
+                    src={podcast.image || `/placeholder.svg?height=500&width=400&query=podcast+${podcast.title}`}
+                    alt={podcast.title}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-300"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  />
+                  <div className="absolute inset-0 bg-black/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                    <Play className="w-12 h-12 text-white" />
+                  </div>
+                </div>
+                <div className="p-6">
+                  <span className="text-xs font-medium text-primary bg-pink-50 px-2 py-1 rounded-full">
+                    {podcast.category}
+                  </span>
+                  <h3 className="text-lg font-semibold text-gray-900 mt-3 mb-2 group-hover:text-primary transition-colors line-clamp-2">
+                    {podcast.title}
+                  </h3>
+                  <p className="text-gray-600 text-sm line-clamp-3">{podcast.description}</p>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Content */}
+      <section className="py-16 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between mb-12">
+            <h2 className="text-3xl font-bold text-gray-900">Konten Edukatif</h2>
+            <Link href="/content" className="text-primary hover:text-primary/80 font-medium inline-flex items-center">
+              Lihat Semua
+              <ArrowRight className="w-4 h-4 ml-1" />
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {featuredContent.map((content) => (
+              <Link
+                key={content.id}
+                href={content.content_url || "#"}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-shadow"
+              >
+                <div className="relative aspect-[4/5]">
+                  <Image
+                    src={content.image || `/placeholder.svg?height=500&width=400&query=article+${content.title}`}
+                    alt={content.title}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-300"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  />
+                </div>
+                <div className="p-6">
+                  <span className="text-xs font-medium text-gray-700 bg-gray-100 px-2 py-1 rounded-full">
+                    {content.category}
+                  </span>
+                  <h3 className="text-lg font-semibold text-gray-900 mt-3 mb-2 group-hover:text-primary transition-colors line-clamp-2">
+                    {content.title}
+                  </h3>
+                  <p className="text-gray-600 text-sm line-clamp-3">{content.description}</p>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-16 bg-primary">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl font-bold text-white mb-4">Bergabunglah dengan Komunitas Pembelajar</h2>
+          <p className="text-xl text-primary-foreground/90 mb-8">
+            Dukung misi kami dalam menyebarkan pendidikan berkualitas untuk semua
+          </p>
+          <Link
+            href="https://mayar.gg/logos-id"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center px-8 py-4 bg-white text-primary font-semibold rounded-lg hover:bg-gray-50 transition-colors"
+          >
+            Dukung Kami
+            <ArrowRight className="w-5 h-5 ml-2" />
+          </Link>
         </div>
       </section>
     </div>
-  )
-}
-
-interface FeaturedItemProps {
-  id: number | string
-  title: string
-  description: string
-  image: string
-  category: string
-  link?: string
-  audio_url?: string
-  content_url?: string
-}
-
-interface FeaturedItemsSectionProps {
-  title: string
-  items: FeaturedItemProps[]
-  type: "webinar" | "podcast" | "content"
-  bgColor?: string
-}
-
-function FeaturedItemsSection({ title, items, type, bgColor = "bg-white" }: FeaturedItemsSectionProps) {
-  const getLink = (item: FeaturedItemProps) => {
-    switch (type) {
-      case "webinar":
-        return item.link || "#"
-      case "podcast":
-        return item.audio_url || "#"
-      case "content":
-        return item.content_url || "#"
-      default:
-        return "#"
-    }
-  }
-
-  const getCategoryTagStyle = () => {
-    switch (type) {
-      case "webinar":
-        return "bg-accent text-accent-foreground"
-      case "podcast":
-        return "bg-primary text-white"
-      case "content":
-        return "bg-yellow-400 text-yellow-900"
-      default:
-        return "bg-muted text-muted-foreground"
-    }
-  }
-
-  return (
-    <section className={cn("section-padding", bgColor)}>
-      <div className="container">
-        <h2 className="text-2xl md:text-3xl font-bold mb-10 text-slate-800">
-          {title}
-          <div className="w-20 h-1 bg-gradient-to-r from-primary to-accent mt-2.5 rounded-full"></div>
-        </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-8">
-          {items.map((item) => (
-            <Link
-              key={item.id}
-              href={getLink(item)}
-              target={getLink(item).startsWith("http") ? "_blank" : "_self"}
-              rel={getLink(item).startsWith("http") ? "noopener noreferrer" : ""}
-              className="group block card-base overflow-hidden hover:scale-[1.02] transition-transform duration-200"
-            >
-              <div className="relative aspect-[4/5] overflow-hidden">
-                <Image
-                  src={item.image || `/placeholder.svg?height=500&width=400&query=${type}+thumbnail`}
-                  alt={item.title}
-                  fill
-                  className="object-cover transition-transform duration-300 group-hover:scale-105"
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                />
-              </div>
-              <div className="p-5">
-                <span
-                  className={cn(
-                    "text-xs font-semibold px-2.5 py-1 rounded-full shadow-sm mb-2 inline-block",
-                    getCategoryTagStyle(),
-                  )}
-                >
-                  {item.category}
-                </span>
-                <h3 className="text-lg font-semibold text-slate-800 mb-1.5 group-hover:text-primary transition-colors line-clamp-2">
-                  {item.title}
-                </h3>
-                <p className="text-sm text-slate-600 line-clamp-3 leading-relaxed">{item.description}</p>
-              </div>
-            </Link>
-          ))}
-        </div>
-        <div className="mt-12 text-center">
-          <Link href={`/${type}s`} className="btn btn-outline-primary btn-md shadow-sm hover:shadow-md">
-            Lihat Semua {type === "content" ? "Konten" : type.charAt(0).toUpperCase() + type.slice(1) + "s"}
-            <ArrowRight className="w-4 h-4 ml-1.5" />
-          </Link>
-        </div>
-      </div>
-    </section>
   )
 }
