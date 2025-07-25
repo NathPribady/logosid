@@ -19,7 +19,7 @@ export default async function HomePage() {
   const announcementCards = [
     {
       title: "Bahas Pendidikan",
-      image: "https://i.postimg.cc/nr0TR9WY/Whats-App-Image-2025-06-30-at-18-10-33.jpg",
+      image: "https://pbs.twimg.com/media/GvqUQhvXQAAqBEP?format=jpg&name=large",
       tag: "Cohort Based Course",
       date: "Mulai 18 Juli 2025",
       description: "Kelas diskusi intensif membahas teori dan praktik pendidikan.",
@@ -28,7 +28,7 @@ export default async function HomePage() {
     },
     {
       title: "Henry Giroux 101",
-      image: "https://i.postimg.cc/9fRs8R6M/1.png",
+      image: "https://pbs.twimg.com/media/GrxGIuQWkAAfNcj?format=jpg&name=large",
       tag: "Cohort Based Course",
       participants: "Terbatas 50 Peserta",
       description: "Eksplorasi mendalam pemikiran Henry Giroux.",
@@ -37,10 +37,10 @@ export default async function HomePage() {
     },
     {
       title: 'Website "Langka"',
-      image: "https://i.postimg.cc/J04qFSsq/Screenshot-2025-05-19-at-2-59-21-PM.png",
+      image: "https://pbs.twimg.com/media/Gwqn7HyWYAAQCL_?format=jpg&name=4096x4096",
       tag: "Baru Diluncurkan",
-      description: "400+ karya sastra, sejarah, sampai kejahatan HAM berat.",
-      link: "https://langka.vercel.app",
+      description: "600+ karya sastra, sejarah, sampai kejahatan HAM berat.",
+      link: "https://langka.logosid.app",
       buttonText: "Baca Gratis",
     },
   ]
