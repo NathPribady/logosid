@@ -31,7 +31,7 @@ export async function getPodcasts(retries = 3): Promise<Podcast[]> {
   } catch (error) {
     if (retries > 0) {
       console.log(`Retrying... (${retries} attempts left)`)
-      await delay(1000) // Wait for 1 second before retrying
+      await delay(1000)
       return getPodcasts(retries - 1)
     } else {
       console.error("Max retries reached. Error fetching podcasts:", error)

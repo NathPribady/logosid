@@ -1,68 +1,72 @@
 import Link from "next/link"
 import Image from "next/image"
-import { Search, ArrowRight, Calendar, Users, BookOpen, Play } from "lucide-react"
+import { ArrowRight, Calendar, Users, BookOpen, Play } from "lucide-react"
 import { getWebinars } from "../lib/webinars"
 import { getPodcasts } from "../lib/podcasts"
 import { getContent } from "../lib/content"
 
 export const revalidate = 3600
 
+const announcementCards = [
+  {
+    title: "Kelas Adat dan Leluhur",
+    image:
+      "https://sjc.microlink.io/1ECO8qMthBHbfvsRDO0wFPHg9DlMMyUc8Lksw923TyTlwqn7xyXq6iSNpPs_4bAzYrNklimTX5r_PaOkButjOQ.jpeg",
+    tag: "Cohort Based Course",
+    date: "5 Agustus - 24 September 2024",
+    description:
+      "Ruang aman dan inklusif untuk mengkonstruksi pengetahuan bersama yang melibatkan komunitas Adat, penghayat kepercayaan, dan pendidikan dekolonial.",
+    link: "https://adat.logosid.app",
+    buttonText: "Daftar Sekarang",
+    bgColor: "bg-orange-500",
+    textColor: "text-white",
+  },
+  {
+    title: "Bahas Pendidikan",
+    image: "https://pbs.twimg.com/media/GvqUQhvXQAAqBEP?format=jpg&name=large",
+    tag: "Cohort Based Course",
+    date: "Mulai 18 Juli 2025",
+    description: "Kelas diskusi intensif membahas teori dan praktik pendidikan.",
+    link: "https://logos-id.myr.id/pl/bahas-pendidikan",
+    buttonText: "Daftar (Donasi Seikhlasnya)!",
+    bgColor: "bg-primary",
+    textColor: "text-white",
+  },
+  {
+    title: "Henry Giroux 101",
+    image: "https://pbs.twimg.com/media/GrxGIuQWkAAfNcj?format=jpg&name=large",
+    tag: "Cohort Based Course",
+    participants: "Terbatas 50 Peserta",
+    description: "Eksplorasi mendalam pemikiran Henry Giroux.",
+    link: "https://logos-id.myr.id/pl/henry-giroux-101",
+    buttonText: "Daftar (Donasi Seikhlasnya)!",
+    bgColor: "bg-primary",
+    textColor: "text-white",
+  },
+  {
+    title: 'Website "Langka"',
+    image: "https://pbs.twimg.com/media/Gwqn7HyWYAAQCL_?format=jpg&name=4096x4096",
+    tag: "Baru Diluncurkan",
+    description: "600+ karya sastra, sejarah, sampai kejahatan HAM berat.",
+    link: "https://langka.logosid.app",
+    buttonText: "Baca Gratis",
+    bgColor: "bg-blue-600",
+    textColor: "text-white",
+  },
+]
+
+export const metadata = {
+  title: "Logos ID - Platform Pendidikan Berkualitas",
+  description:
+    "Platform pendidikan yang memberdayakan pikiran melalui sains, filsafat, politik & sejarah. Webinar, podcast, dan konten edukatif berkualitas tinggi.",
+}
+
 export default async function HomePage() {
-  const allWebinars = await getWebinars()
-  const allPodcasts = await getPodcasts()
-  const allContent = await getContent()
+  const [allWebinars, allPodcasts, allContent] = await Promise.all([getWebinars(), getPodcasts(), getContent()])
 
   const featuredWebinars = allWebinars.slice(0, 3)
   const featuredPodcasts = allPodcasts.slice(0, 3)
   const featuredContent = allContent.slice(0, 3)
-
-  const announcementCards = [
-    {
-      title: "Kelas Adat dan Leluhur",
-      image:
-        "https://sjc.microlink.io/1ECO8qMthBHbfvsRDO0wFPHg9DlMMyUc8Lksw923TyTlwqn7xyXq6iSNpPs_4bAzYrNklimTX5r_PaOkButjOQ.jpeg",
-      tag: "Cohort Based Course",
-      date: "5 Agustus - 24 September 2024",
-      description:
-        "Ruang aman dan inklusif untuk mengkonstruksi pengetahuan bersama yang melibatkan komunitas Adat, penghayat kepercayaan, dan pendidikan dekolonial.",
-      link: "https://adat.logosid.app",
-      buttonText: "Daftar Sekarang",
-      bgColor: "bg-orange-500",
-      textColor: "text-white",
-    },
-    {
-      title: "Bahas Pendidikan",
-      image: "https://pbs.twimg.com/media/GvqUQhvXQAAqBEP?format=jpg&name=large",
-      tag: "Cohort Based Course",
-      date: "Mulai 18 Juli 2025",
-      description: "Kelas diskusi intensif membahas teori dan praktik pendidikan.",
-      link: "https://logos-id.myr.id/pl/bahas-pendidikan",
-      buttonText: "Daftar (Donasi Seikhlasnya)!",
-      bgColor: "bg-primary",
-      textColor: "text-white",
-    },
-    {
-      title: "Henry Giroux 101",
-      image: "https://pbs.twimg.com/media/GrxGIuQWkAAfNcj?format=jpg&name=large",
-      tag: "Cohort Based Course",
-      participants: "Terbatas 50 Peserta",
-      description: "Eksplorasi mendalam pemikiran Henry Giroux.",
-      link: "https://logos-id.myr.id/pl/henry-giroux-101",
-      buttonText: "Daftar (Donasi Seikhlasnya)!",
-      bgColor: "bg-primary",
-      textColor: "text-white",
-    },
-    {
-      title: 'Website "Langka"',
-      image: "https://pbs.twimg.com/media/Gwqn7HyWYAAQCL_?format=jpg&name=4096x4096",
-      tag: "Baru Diluncurkan",
-      description: "600+ karya sastra, sejarah, sampai kejahatan HAM berat.",
-      link: "https://langka.logosid.app",
-      buttonText: "Baca Gratis",
-      bgColor: "bg-blue-600",
-      textColor: "text-white",
-    },
-  ]
 
   return (
     <div className="pt-16">
@@ -78,7 +82,7 @@ export default async function HomePage() {
                 <h1 className="text-4xl lg:text-6xl font-bold text-primary mb-6">Logos ID</h1>
                 <p className="text-lg text-gray-600 mb-8 leading-relaxed">
                   Platform pendidikan yang memberdayakan pikiran melalui sains, filsafat, politik, dan sejarah.
-                  Menyediakan webinar, podcast, dan konten edukatif untuk mengembangkan pemikiran
+                  Menyediakan webinar, podcast, dan konten edukatif berkualitas tinggi untuk mengembangkan pemikiran
                   kritis dan wawasan mendalam.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
@@ -86,8 +90,8 @@ export default async function HomePage() {
                     Jelajahi Konten
                     <ArrowRight className="w-5 h-5 ml-2" />
                   </Link>
-                  <Link href="#about" className="btn btn-outline btn-lg">
-                    Pelajari Lebih Lanjut
+                  <Link href="/podcasts" className="btn btn-outline btn-lg">
+                    Dengarkan Podcast
                   </Link>
                 </div>
               </div>
@@ -106,30 +110,6 @@ export default async function HomePage() {
                 />
               </div>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Search Section */}
-      <section className="py-16 bg-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">Temukan Wawasan Baru</h2>
-          <p className="text-lg text-gray-600 mb-8">
-            Cari dalam database kami tentang filosofi, pedagogi, psikologi, studi disabilitas, studi gender, dan teori
-            kritis.
-          </p>
-          <div className="relative max-w-2xl mx-auto">
-            <div className="relative">
-              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-              <input
-                type="text"
-                placeholder="Cari konsep, teori, atau tokoh..."
-                className="w-full pl-12 pr-4 py-4 text-lg border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-transparent outline-none"
-              />
-            </div>
-            <button className="absolute right-2 top-2 bottom-2 px-6 bg-primary text-white rounded-lg hover:bg-primary/90 transition-colors">
-              Cari
-            </button>
           </div>
         </div>
       </section>
@@ -207,7 +187,7 @@ export default async function HomePage() {
                 <Calendar className="w-8 h-8 text-primary" />
               </div>
               <h3 className="text-3xl font-bold text-gray-900 mb-2">200+</h3>
-              <p className="text-gray-600">Webinar</p>
+              <p className="text-gray-600">Webinar Berkualitas</p>
             </div>
             <div className="text-center">
               <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -326,7 +306,7 @@ export default async function HomePage() {
       </section>
 
       {/* Featured Content */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between mb-12">
             <h2 className="text-3xl font-bold text-gray-900">Konten Edukatif</h2>

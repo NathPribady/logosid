@@ -16,7 +16,6 @@ interface Webinar {
 }
 
 interface Category {
-  id: number
   name: string
 }
 
@@ -54,10 +53,14 @@ export default function WebinarList() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">Webinar</h1>
-          <p className="text-lg text-gray-600">
-            Jelajahi berbagai webinar kami tentang sains, filsafat, politik, dan sejarah.
-          </p>
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6">
+            <div className="text-center sm:text-left">
+              <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Webinar</h1>
+              <p className="text-lg text-gray-600">
+                Jelajahi berbagai webinar kami tentang sains, filsafat, politik, dan sejarah.
+              </p>
+            </div>
+          </div>
         </div>
 
         {/* Filter */}
@@ -66,7 +69,7 @@ export default function WebinarList() {
           <div className="flex flex-wrap gap-3">
             <button
               onClick={() => setSelectedCategory("Semua")}
-              className={`px-4 py-2 rounded-lg font-medium transition-colors ${
+              className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
                 selectedCategory === "Semua"
                   ? "bg-primary text-white"
                   : "bg-white text-slate-700 border border-slate-300 hover:bg-slate-50 hover:border-primary/50"
@@ -76,9 +79,9 @@ export default function WebinarList() {
             </button>
             {categories.map((category) => (
               <button
-                key={category.id}
+                key={category.name}
                 onClick={() => setSelectedCategory(category.name)}
-                className={`px-4 py-2 rounded-lg font-medium transition-colors ${
+                className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
                   selectedCategory === category.name
                     ? "bg-primary text-white"
                     : "bg-white text-slate-700 border border-slate-300 hover:bg-slate-50 hover:border-primary/50"

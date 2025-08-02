@@ -46,9 +46,6 @@ export default function Header() {
             <Link href="/content" className="text-gray-700 hover:text-primary transition-colors">
               Konten
             </Link>
-            <Link href="/about" className="text-gray-700 hover:text-primary transition-colors">
-              Tentang
-            </Link>
           </nav>
 
           {/* Desktop CTA */}
@@ -67,6 +64,7 @@ export default function Header() {
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             className="md:hidden p-2 text-gray-700 hover:text-primary"
+            aria-label="Toggle menu"
           >
             {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
@@ -96,13 +94,6 @@ export default function Header() {
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 Konten
-              </Link>
-              <Link
-                href="/about"
-                className="text-gray-700 hover:text-primary transition-colors"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                Tentang
               </Link>
               <Link
                 href="https://mayar.gg/logos-id"

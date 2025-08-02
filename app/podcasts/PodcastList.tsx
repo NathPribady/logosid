@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react"
 import Link from "next/link"
 import Image from "next/image"
-import { Play } from "lucide-react"
+import { PlayCircle } from "lucide-react"
 import { getPodcasts } from "../../lib/podcasts"
 import { getCategories } from "../../lib/categories"
 
@@ -17,7 +17,6 @@ interface Podcast {
 }
 
 interface Category {
-  id: number
   name: string
 }
 
@@ -67,7 +66,7 @@ export default function PodcastList() {
           <div className="flex flex-wrap gap-3">
             <button
               onClick={() => setSelectedCategory("Semua")}
-              className={`px-4 py-2 rounded-lg font-medium transition-colors ${
+              className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
                 selectedCategory === "Semua"
                   ? "bg-primary text-white"
                   : "bg-white text-slate-700 border border-slate-300 hover:bg-slate-50 hover:border-primary/50"
@@ -77,9 +76,9 @@ export default function PodcastList() {
             </button>
             {categories.map((category) => (
               <button
-                key={category.id}
+                key={category.name}
                 onClick={() => setSelectedCategory(category.name)}
-                className={`px-4 py-2 rounded-lg font-medium transition-colors ${
+                className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
                   selectedCategory === category.name
                     ? "bg-primary text-white"
                     : "bg-white text-slate-700 border border-slate-300 hover:bg-slate-50 hover:border-primary/50"
@@ -111,7 +110,7 @@ export default function PodcastList() {
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   />
                   <div className="absolute inset-0 bg-black/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                    <Play className="w-12 h-12 text-white" />
+                    <PlayCircle className="w-12 h-12 text-white" />
                   </div>
                 </div>
                 <div className="p-6">

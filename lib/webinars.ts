@@ -30,7 +30,7 @@ export async function getWebinars(retries = 3): Promise<Webinar[]> {
   } catch (error) {
     if (retries > 0) {
       console.log(`Retrying... (${retries} attempts left)`)
-      await delay(1000) // Wait for 1 second before retrying
+      await delay(1000)
       return getWebinars(retries - 1)
     } else {
       console.error("Max retries reached. Error fetching webinars:", error)

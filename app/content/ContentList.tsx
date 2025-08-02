@@ -16,7 +16,6 @@ interface Content {
 }
 
 interface Category {
-  id: number
   name: string
 }
 
@@ -56,7 +55,7 @@ export default function ContentList() {
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold text-gray-900 mb-4">Konten Edukatif</h1>
           <p className="text-lg text-gray-600">
-            Baca artikel dan konten edukatif berkualitas tentang berbagai topik pembelajaran.
+            Temukan artikel dan konten edukatif berkualitas tentang berbagai topik pembelajaran.
           </p>
         </div>
 
@@ -66,7 +65,7 @@ export default function ContentList() {
           <div className="flex flex-wrap gap-3">
             <button
               onClick={() => setSelectedCategory("Semua")}
-              className={`px-4 py-2 rounded-lg font-medium transition-colors ${
+              className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
                 selectedCategory === "Semua"
                   ? "bg-primary text-white"
                   : "bg-white text-slate-700 border border-slate-300 hover:bg-slate-50 hover:border-primary/50"
@@ -76,9 +75,9 @@ export default function ContentList() {
             </button>
             {categories.map((category) => (
               <button
-                key={category.id}
+                key={category.name}
                 onClick={() => setSelectedCategory(category.name)}
-                className={`px-4 py-2 rounded-lg font-medium transition-colors ${
+                className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
                   selectedCategory === category.name
                     ? "bg-primary text-white"
                     : "bg-white text-slate-700 border border-slate-300 hover:bg-slate-50 hover:border-primary/50"
@@ -119,15 +118,13 @@ export default function ContentList() {
                   </h3>
                   <p className="text-gray-600 text-sm line-clamp-3">{item.description}</p>
                   <div className="mt-4">
-                    <span className="text-primary font-medium text-sm">Baca Selengkapnya →</span>
+                    <span className="text-primary font-medium text-sm">Baca Selengkapnya &rarr;</span>
                   </div>
                 </div>
               </Link>
             ))
           ) : (
-            <div className="col-span-full text-center py-12">
-              <p className="text-gray-500">Tidak ada konten ditemukan untuk kategori ini.</p>
-            </div>
+            <div className="text-center text-gray-600">Tidak ada konten yang tersedia.</div>
           )}
         </div>
       </div>
