@@ -50,53 +50,50 @@ export default function WebinarList() {
   }
 
   return (
-    <div className="pt-20 md:pt-24 pb-16">
+    <div className="pt-20 md:pt-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="mb-12">
-          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Webinar</h1>
-          <p className="text-lg text-gray-600 mb-8">
+        {/* Header */}
+        <div className="text-center mb-12">
+          <h1 className="text-4xl font-bold text-gray-900 mb-4">Webinar</h1>
+          <p className="text-lg text-gray-600">
             Jelajahi berbagai webinar kami tentang sains, filsafat, politik, dan sejarah.
           </p>
+        </div>
 
-          {/* Filter Buttons */}
-          <div className="mb-8">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Filter berdasarkan Kategori</h3>
-            <div className="flex flex-wrap gap-2">
+        {/* Filter */}
+        <div className="mb-12">
+          <h3 className="text-lg font-semibold text-gray-900 mb-4">Filter berdasarkan Kategori</h3>
+          <div className="flex flex-wrap gap-3">
+            <button
+              onClick={() => setSelectedCategory("Semua")}
+              className={`px-4 py-2 rounded-lg font-medium transition-colors ${
+                selectedCategory === "Semua"
+                  ? "bg-primary text-white"
+                  : "bg-white text-slate-700 border border-slate-300 hover:bg-slate-50 hover:border-primary/50"
+              }`}
+            >
+              Semua
+            </button>
+            {categories.map((category) => (
               <button
-                onClick={() => setSelectedCategory("Semua")}
-                className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-                  selectedCategory === "Semua"
+                key={category.id}
+                onClick={() => setSelectedCategory(category.name)}
+                className={`px-4 py-2 rounded-lg font-medium transition-colors ${
+                  selectedCategory === category.name
                     ? "bg-primary text-white"
-                    : "bg-white text-gray-700 border border-gray-300 hover:bg-gray-50 hover:border-primary/50"
+                    : "bg-white text-slate-700 border border-slate-300 hover:bg-slate-50 hover:border-primary/50"
                 }`}
               >
-                Semua
+                {category.name}
               </button>
-              {categories.map((category) => (
-                <button
-                  key={category.id}
-                  onClick={() => setSelectedCategory(category.name)}
-                  className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-                    selectedCategory === category.name
-                      ? "bg-primary text-white"
-                      : "bg-white text-gray-700 border border-gray-300 hover:bg-gray-50 hover:border-primary/50"
-                  }`}
-                >
-                  {category.name}
-                </button>
-              ))}
-            </div>
+            ))}
           </div>
         </div>
 
         {/* Webinar Grid */}
-        {filteredWebinars.length === 0 ? (
-          <div className="text-center py-12">
-            <p className="text-gray-500">Tidak ada webinar ditemukan untuk kategori ini.</p>
-          </div>
-        ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredWebinars.map((webinar) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 pb-20">
+          {filteredWebinars.length > 0 ? (
+            filteredWebinars.map((webinar) => (
               <Link
                 key={webinar.id}
                 href={webinar.link || "#"}
@@ -126,9 +123,13 @@ export default function WebinarList() {
                   </div>
                 </div>
               </Link>
-            ))}
-          </div>
-        )}
+            ))
+          ) : (
+            <div className="col-span-full text-center py-12">
+              <p className="text-gray-500">Tidak ada webinar ditemukan untuk kategori ini.</p>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   )

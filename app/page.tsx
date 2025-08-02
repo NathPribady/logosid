@@ -18,6 +18,19 @@ export default async function HomePage() {
 
   const announcementCards = [
     {
+      title: "Kelas Adat dan Leluhur",
+      image:
+        "https://sjc.microlink.io/1ECO8qMthBHbfvsRDO0wFPHg9DlMMyUc8Lksw923TyTlwqn7xyXq6iSNpPs_4bAzYrNklimTX5r_PaOkButjOQ.jpeg",
+      tag: "Cohort Based Course",
+      date: "5 Agustus - 24 September 2024",
+      description:
+        "Ruang aman dan inklusif untuk mengkonstruksi pengetahuan bersama yang melibatkan komunitas Adat, penghayat kepercayaan, dan pendidikan dekolonial.",
+      link: "https://adat.logosid.app",
+      buttonText: "Daftar Sekarang",
+      bgColor: "bg-orange-500",
+      textColor: "text-white",
+    },
+    {
       title: "Bahas Pendidikan",
       image: "https://pbs.twimg.com/media/GvqUQhvXQAAqBEP?format=jpg&name=large",
       tag: "Cohort Based Course",
@@ -25,6 +38,8 @@ export default async function HomePage() {
       description: "Kelas diskusi intensif membahas teori dan praktik pendidikan.",
       link: "https://logos-id.myr.id/pl/bahas-pendidikan",
       buttonText: "Daftar (Donasi Seikhlasnya)!",
+      bgColor: "bg-primary",
+      textColor: "text-white",
     },
     {
       title: "Henry Giroux 101",
@@ -34,6 +49,8 @@ export default async function HomePage() {
       description: "Eksplorasi mendalam pemikiran Henry Giroux.",
       link: "https://logos-id.myr.id/pl/henry-giroux-101",
       buttonText: "Daftar (Donasi Seikhlasnya)!",
+      bgColor: "bg-primary",
+      textColor: "text-white",
     },
     {
       title: 'Website "Langka"',
@@ -42,6 +59,8 @@ export default async function HomePage() {
       description: "600+ karya sastra, sejarah, sampai kejahatan HAM berat.",
       link: "https://langka.logosid.app",
       buttonText: "Baca Gratis",
+      bgColor: "bg-blue-600",
+      textColor: "text-white",
     },
   ]
 
@@ -59,7 +78,7 @@ export default async function HomePage() {
                 <h1 className="text-4xl lg:text-6xl font-bold text-primary mb-6">Logos ID</h1>
                 <p className="text-lg text-gray-600 mb-8 leading-relaxed">
                   Platform pendidikan yang memberdayakan pikiran melalui sains, filsafat, politik, dan sejarah.
-                  Menyediakan webinar, podcast, dan konten edukatif berkualitas tinggi untuk mengembangkan pemikiran
+                  Menyediakan webinar, podcast, dan konten edukatif untuk mengembangkan pemikiran
                   kritis dan wawasan mendalam.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
@@ -123,7 +142,7 @@ export default async function HomePage() {
             <div className="w-20 h-1 bg-primary mx-auto"></div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
             {announcementCards.map((item, index) => (
               <div
                 key={item.title}
@@ -138,7 +157,11 @@ export default async function HomePage() {
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   />
                   <div className="absolute top-4 left-4">
-                    <span className="bg-primary text-white text-xs font-medium px-3 py-1 rounded-full">{item.tag}</span>
+                    <span
+                      className={`${item.bgColor || "bg-primary"} ${item.textColor || "text-white"} text-xs font-medium px-3 py-1 rounded-full`}
+                    >
+                      {item.tag}
+                    </span>
                   </div>
                 </div>
                 <div className="p-6">
@@ -164,7 +187,7 @@ export default async function HomePage() {
                     href={item.link}
                     target={item.link.startsWith("http") ? "_blank" : "_self"}
                     rel={item.link.startsWith("http") ? "noopener noreferrer" : ""}
-                    className="btn btn-primary btn-md w-full"
+                    className={`btn btn-md w-full ${item.bgColor || "btn-primary"}`}
                   >
                     {item.buttonText}
                   </Link>
@@ -184,7 +207,7 @@ export default async function HomePage() {
                 <Calendar className="w-8 h-8 text-primary" />
               </div>
               <h3 className="text-3xl font-bold text-gray-900 mb-2">200+</h3>
-              <p className="text-gray-600">Webinar Berkualitas</p>
+              <p className="text-gray-600">Webinar</p>
             </div>
             <div className="text-center">
               <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
