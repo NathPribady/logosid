@@ -9,6 +9,18 @@ export const revalidate = 3600
 
 const announcementCards = [
   {
+    title: "Urun Dana Buku Logos ID",
+    image: "https://i.ibb.co/pBV620tK/Screenshot-2025-08-16-at-11-05-18-PM.png",
+    tag: "Urun Dana",
+    date: "Target: Rp 50.000.000",
+    description:
+      "Bantu kami menerbitkan buku-buku berkualitas tentang pendidikan, filsafat, dan pemikiran kritis. Setiap kontribusi Anda sangat berarti untuk kemajuan literasi Indonesia.",
+    link: "https://buku.logosid.app",
+    buttonText: "Dukung Sekarang",
+    bgColor: "bg-green-600",
+    textColor: "text-white",
+  },
+  {
     title: "Kelas Adat dan Leluhur",
     image:
       "https://sjc.microlink.io/1ECO8qMthBHbfvsRDO0wFPHg9DlMMyUc8Lksw923TyTlwqn7xyXq6iSNpPs_4bAzYrNklimTX5r_PaOkButjOQ.jpeg",
@@ -45,7 +57,7 @@ const announcementCards = [
   },
   {
     title: 'Website "Langka"',
-    image: "https://pbs.twimg.com/media/Gwqn7HyWYAAQCL_?format=jpg&name=4096x4096",
+    image: "https://i.ibb.co/608HZ6df/Screenshot-2025-08-16-at-11-08-33-PM.png",
     tag: "Baru Diluncurkan",
     description: "600+ karya sastra, sejarah, sampai kejahatan HAM berat.",
     link: "https://langka.logosid.app",
@@ -122,7 +134,7 @@ export default async function HomePage() {
             <div className="w-20 h-1 bg-primary mx-auto"></div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {announcementCards.map((item, index) => (
               <div
                 key={item.title}

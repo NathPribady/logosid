@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   title: "Logos ID - Platform Pendidikan Berkualitas",
   description:
     "Platform pendidikan yang memberdayakan pikiran melalui sains, filsafat, politik & sejarah. Webinar, podcast, dan konten edukatif berkualitas tinggi.",
-    generator: 'v0.dev'
+    generator: 'v0.app'
 }
 
 const socialLinks = [
