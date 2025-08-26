@@ -35,22 +35,11 @@ const announcementCards = [
   },
   {
     title: "Bahas Pendidikan",
-    image: "https://pbs.twimg.com/media/GvqUQhvXQAAqBEP?format=jpg&name=large",
+    image: "https://i.ibb.co/hFJ9g1Y5/Whats-App-Image-2025-08-25-at-15-25-35.jpg",
     tag: "Cohort Based Course",
-    date: "Mulai 18 Juli 2025",
+    date: "Mulai 29 Agustus 2025",
     description: "Kelas diskusi intensif membahas teori dan praktik pendidikan.",
     link: "https://logos-id.myr.id/pl/bahas-pendidikan",
-    buttonText: "Daftar (Donasi Seikhlasnya)!",
-    bgColor: "bg-primary",
-    textColor: "text-white",
-  },
-  {
-    title: "Henry Giroux 101",
-    image: "https://pbs.twimg.com/media/GrxGIuQWkAAfNcj?format=jpg&name=large",
-    tag: "Cohort Based Course",
-    participants: "Terbatas 50 Peserta",
-    description: "Eksplorasi mendalam pemikiran Henry Giroux.",
-    link: "https://logos-id.myr.id/pl/henry-giroux-101",
     buttonText: "Daftar (Donasi Seikhlasnya)!",
     bgColor: "bg-primary",
     textColor: "text-white",
@@ -134,7 +123,7 @@ export default async function HomePage() {
             <div className="w-20 h-1 bg-primary mx-auto"></div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
             {announcementCards.map((item, index) => (
               <div
                 key={item.title}
