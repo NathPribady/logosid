@@ -9,6 +9,17 @@ export const revalidate = 3600
 
 const announcementCards = [
   {
+    title: "bell hooks 101",
+    image: "https://i.ibb.co/kVkZzPp1/Screenshot-2025-09-25-at-11-47-39-AM.png",
+    tag: "Cohort Based Course",
+    date: "Mulai 29 Agustus 2025",
+    description: "Kelas diskusi intensif membahas pemikiran bell hooks tentang pendidikan kritis dan pedagogi cinta.",
+    link: "https://www.instagram.com/p/DPBoHs1k14L/?img_index=1",
+    buttonText: "Daftar (Donasi Seikhlasnya)!",
+    bgColor: "bg-primary",
+    textColor: "text-white",
+  },
+  {
     title: "Urun Dana Buku Logos ID",
     image: "https://i.ibb.co/pBV620tK/Screenshot-2025-08-16-at-11-05-18-PM.png",
     tag: "Urun Dana",
@@ -31,17 +42,6 @@ const announcementCards = [
     link: "https://adat.logosid.app",
     buttonText: "Daftar Sekarang",
     bgColor: "bg-orange-500",
-    textColor: "text-white",
-  },
-  {
-    title: "Bahas Pendidikan",
-    image: "https://i.ibb.co/hFJ9g1Y5/Whats-App-Image-2025-08-25-at-15-25-35.jpg",
-    tag: "Cohort Based Course",
-    date: "Mulai 29 Agustus 2025",
-    description: "Kelas diskusi intensif membahas teori dan praktik pendidikan.",
-    link: "https://logos-id.myr.id/pl/bahas-pendidikan",
-    buttonText: "Daftar (Donasi Seikhlasnya)!",
-    bgColor: "bg-primary",
     textColor: "text-white",
   },
   {
@@ -168,7 +168,7 @@ export default async function HomePage() {
                     href={item.link}
                     target={item.link.startsWith("http") ? "_blank" : "_self"}
                     rel={item.link.startsWith("http") ? "noopener noreferrer" : ""}
-                    className={`btn btn-md w-full ${item.bgColor || "btn-primary"}`}
+                    className={`btn btn-md w-full text-white ${item.bgColor || "btn-primary"}`}
                   >
                     {item.buttonText}
                   </Link>
