@@ -14,7 +14,7 @@ const announcementCards = [
     tag: "Cohort Based Course",
     date: "Mulai 29 Agustus 2025",
     description: "Kelas diskusi intensif membahas pemikiran bell hooks tentang pendidikan kritis dan pedagogi cinta.",
-    link: "https://www.instagram.com/p/DPBoHs1k14L/?img_index=1",
+    link: "https://logos-id.myr.id/pl/bell-hooks-101",
     buttonText: "Daftar (Donasi Seikhlasnya)!",
     bgColor: "bg-primary",
     textColor: "text-white",
@@ -102,7 +102,7 @@ export default async function HomePage() {
             <div className="relative">
               <div className="relative rounded-2xl overflow-hidden shadow-2xl bg-gray-900">
                 <Image
-                  src="https://cloudfront-us-east-1.images.arcpublishing.com/spectator/OSRNH3N7LFB5XJEWUUBVS3ZWZM.png"
+                  src="/images/design-mode/OSRNH3N7LFB5XJEWUUBVS3ZWZM.png"
                   alt="The Thinker statue representing contemplation and critical thinking"
                   width={600}
                   height={600}
